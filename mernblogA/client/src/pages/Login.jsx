@@ -38,12 +38,13 @@ const Login = () => {
     return (
         <section className="login">
             <div className="container">
-                <h2>Sign In</h2>
+            <h2 className="heading-secondary">Sign In</h2>
                 <form onSubmit={loginUser} className='form login__form'>
                     {error && <p className="form__error-message">{error}</p>}
                     <input type="email" placeholder='Email' name='email' value={userData.email} onChange={changeHandler} autoFocus />
                     <input type="password" placeholder='Password' name='password' value={userData.password} onChange={changeHandler} />
-                    <button type="submit" className='btn primary'>Login</button>
+                    <button type="submit" className='btn general btn--form'>Login</button>
+                  
                 </form>
                 <small>Don't have an account? <Link to="/register">sign up</Link></small>
             </div>
@@ -51,4 +52,4 @@ const Login = () => {
     )
 }
 
-export default Login
+export default Login;

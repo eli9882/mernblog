@@ -1,60 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900');
-
-:root {
-  --color-primary: #6f6af8;
-  --color-white: #fff;
-  --color-red: rgb(255, 63, 63);
-  --color-gray-100: hsl(220, 20%, 10%, 5%);
-  --color-gray-200: hsl(220, 20%, 10%, 10%);
-  --color-gray-300: hsl(220, 20%, 10%, 25%);
-  --color-gray-500: hsl(220, 20%, 10%, 50%);
-  --color-gray-700: #252542;
-  --color-gray-900: #0c0c22;
-
-  --color-bg: hwb(240 95% 0%);
-
-  --transition: all 300ms ease;
-
-  --container-width-lg: 84%;
-  --container-width-md: 92%;
-  --form-width: 50%;
-
-  --radius-1: 0.3rem;
-  --radius-2: 0.6rem;
-  --radius-3: 1rem;
-  --radius-4: 2rem;
-}
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*======================== NAV ========================*/
+/****************************/
+/*NAV*/
+/****************************/
 nav {
   width: 100vw;
   display: flex;
@@ -135,26 +87,307 @@ nav {
 
 
 
-
-
-
-
-
-/*======================== HOME ========================*/
-/*======================== Posts ========================*/
-.posts__container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 4rem;
+/****************************/
+/*Hero*/
+/****************************/
+.section-hero {
+  padding: 30rem 0 0rem 0;
+  height: 80rem;
+  background-image: linear-gradient(
+      to right bottom,
+      rgba(10, 43, 69, 0.6),
+      rgba(167, 209, 245, 0.2)
+    ),
+    url("../Recursos/MujerConSombrilla.jpg");
+  background-size: cover;
+  background-position: top;
 }
 
+.hero {
+  max-width: 130rem;
+  margin: 0 auto;
+  padding: 0 3.2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 9.6rem;
+  align-items: center;
+}
+
+.heading-hero {
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.5px;
+}
+
+.hero-description {
+  font-size: 2rem;
+  line-height: 1.6;
+  margin-bottom: 4.8rem;
+  color: #fff;
+}
+
+.btn_info {
+  display: inline-block;
+  text-decoration: none;
+  font-size: 2rem;
+  font-weight: 600;
+  padding: 1.6rem 3.2rem;
+  border-radius: 9px;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.3s;
+}
+
+/****************************/
+/*NUESTRO COMPROMISO*/
+/****************************/
+
+.section-commitment {
+  padding: 9.6rem 0;
+  border-bottom-style: solid;
+  border-bottom-color: #eee;
+}
+
+.feature-description {
+  font-size: 1.8rem;
+  line-height: 1.8;
+}
+
+.feature-img-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.feature-img {
+  width: 60%;
+  border-radius: 5%;
+  box-shadow: 0 2.4rem 4.8rem rgba(0, 0, 0, 0.075);
+  transition: transform 0.3s ease-in-out;
+}
+
+.feature-img:hover {
+  transform: scale(1.1);
+}
+
+.feature-heading {
+  display: flex;
+  gap: 1.2rem;
+}
+/****************************/
+/*NUESTROs COLABORADORES*/
+/****************************/
+.section-collaborators {
+  padding: 4.8rem 0 3.2rem 0;
+}
+
+.heading-collaborators {
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.75px;
+  font-weight: 500;
+  text-align: center;
+  margin-bottom: 2.4rem;
+  color: #888;
+}
+
+.logos {
+  display: flex;
+  justify-content: space-around;
+}
+
+.logos img {
+  height: 5.2rem;
+}
+.btn--full:link,
+.btn--full:visited {
+  background-color: #228be6;
+  color: #fff;
+}
+
+.btn--full:hover,
+.btn--full:active {
+  background-color: #4cb9e7;
+}
+
+.btn--outline:link,
+.btn--outline:visited {
+  background-color: #fff;
+  color: #555;
+}
+
+.btn--outline:hover,
+.btn--outline:active {
+  background-color: #f1f1ff;
+  box-shadow: inset 0 0 0 3px #fff;
+}
+
+.margin-right-sm {
+  margin-right: 1.6rem !important;
+}
+
+/****************************/
+/*Donations*/
+/****************************/
+
+.section-donations {
+  background-image: linear-gradient(
+      to right bottom,
+      rgba(10, 43, 69, 0.6),
+      rgba(167, 209, 245, 0.2)
+    ),
+    url("../Recursos/MujerConSombrilla.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.donations-description {
+  font-size: 2rem;
+  line-height: 1.6;
+  margin-bottom: 4.8rem;
+  color: #f1f1ff;
+}
+
+.heading-donations {
+  font-size: 5rem;
+  color: #f1f1ff;
+  margin-bottom: 5%;
+}
+
+/****************************/
+  /*SECTION TCU*/
+  /****************************/
+  .section-cta {
+    padding: 4.8rem 0 1.8rem;
+  }
+  
+  .cta {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    box-shadow: 0 2.4rem 4.8rem rgba(0, 0, 0, 0.15);
+    border-radius: 11px;
+    background-image: linear-gradient(to right bottom, #d3e8fa, #d3e8fa);
+    overflow: hidden;
+  }
+  
+  .cta-text-box {
+    padding: 4.8rem 6.4rem 6.4rem 6.4rem;
+    color: #555;
+  }
+  
+  .cta .heading-secondary {
+    color: inherit;
+    margin-bottom: 1.2rem;
+  }
+  
+  .cta-text {
+    font-size: 1.8rem;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+  }
+  
+  .cta-img-box {
+    position: relative;
+    overflow: hidden;
+    background-image: linear-gradient(
+        to right bottom,
+        hsla(208, 80%, 52%, 0.2),
+        hsla(208, 80%, 90%, 0.1)
+      ),
+      url("../Recursos/prueba2.jpeg");
+    background-size: cover;
+    background-position: center;
+  }
+  
+  .cta-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 3.2rem;
+    row-gap: 2.4rem;
+  }
+  
+  .cta-form label {
+    display: block;
+    font-size: 1.6rem;
+    font-weight: 500;
+    margin-bottom: 1.2rem;
+  }
+  
+  .cta-form input,
+  .cta-form select {
+    width: 100%;
+    padding: 1.2rem;
+    font-size: 1.8rem;
+    font-family: inherit;
+    color: inherit;
+    border: none;
+    background-color: #fff;
+    border-radius: 9px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  }
+  
+  .cta-form input::placeholder {
+    color: #aaa;
+  }
+  
+  .cta *:focus {
+    outline: none;
+    box-shadow: 0 0 0 0.8rem rgba(253, 242, 233, 0.5);
+  }
+  .btn_from {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 2rem;
+    font-weight: 600;
+    padding: 1.6rem 3.2rem;
+    border-radius: 9px;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.3s;
+    width: auto; 
+    box-sizing: border-box; 
+
+  }
+  
+  .btn--form:link,
+  .btn--form:visited {
+    background-color: #fff;
+    color:#555;
+  }
+  
+  .btn--form:hover,
+  .btn--form:active {
+    background-color: #f1f1ff;
+    box-shadow: inset 0 0 0 3px #fff;
+  }
+ /****************************/
+  /*SECTION BLOG HOME*/
+  /****************************/
+
+.posts{
+  
+  margin: 4rem;
+}
 .post {
-  background: var(--color-white);
-  padding: 1rem;
-  border-radius: var(--radius-4);
+  background:#fff;
+  padding: 2rem;
+  border-radius: 2rem;
   padding-bottom: 2rem;
-  transition: var(--transition);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: default;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1rem;
+  width: 100%;
+
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
 }
 
 .post:hover {
@@ -162,10 +395,11 @@ nav {
 }
 
 .post__thumbnail {
-  border-radius: var(--radius-3);
+  border-radius: 1rem;
   overflow: hidden;
   height: 16rem;
 }
+
 
 .post__content {
   margin-top: 1.5rem;
@@ -191,15 +425,27 @@ nav {
 .post__author-avatar {
   width: 2.5rem;
   aspect-ratio: 1/1;
-  border-radius: var(--radius-2);
+  border-radius:  0.6rem;
   overflow: hidden;
 }
 
+.slick-arrow {
+  
+  border: none;
+  outline: none;
+  background: #4cb9e76c;
+ 
+  
+}
 
-
-
-
-
+.slick-prev {
+  left: 0% !important;
+  z-index: 1;
+}
+.slick-next {
+  right: 0% !important;
+  z-index: 1;
+}
 
 /*======================== LOADER ========================*/
 .loader {
@@ -208,7 +454,7 @@ nav {
   left: 0;
   height: 100vh;
   width: 100vw;
-  background: var(--color-bg);
+  background: hwb(240 95% 0%);
   display: grid;
   place-items: center;
 }
@@ -220,16 +466,10 @@ nav {
 
 
 
-
-
-
-
-
-
 /*======================== POST DETAILS ========================*/
 .post-detail {
-  width: var(--form-width);
-  background: var(--color-white);
+  width: 50%;
+  background: #fff;
   margin-inline: auto;
   padding: 2rem 0;
 }
@@ -257,27 +497,9 @@ nav {
   margin-bottom: 0.7rem;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /*======================== REGISTER  && GENERAL FORM ========================*/
 .register, .login, .create-post {
-  width: var(--form-width);
+  width: 50%;
   /* -12 because navbar height plus footer top margin */
   height: calc(100vh - 12rem);
   margin-inline: auto;
@@ -291,16 +513,16 @@ nav {
 
 .register small, .login small {
   display: block;
-  margin-top: 1.5rem;
+  margin-top: 2rem;
 }
 
 .register small a, .login small a {
-  color: var(--color-primary);
+  color:#6f6af8;
 }
 
 /* change the background of quill editor */
 .ql-editor {
-  background: var(--color-white);
+  background: #fff;
 }
 
 
@@ -335,7 +557,7 @@ nav {
 .profile__avatar {
   height: 100%;
   border-radius: 50%;
-  border: 1rem solid var(--color-white);
+  border: 1rem solid #fff;
   overflow: hidden;
 }
 
@@ -348,8 +570,8 @@ nav {
 }
 
 .avatar__form label, .profile__avatar-btn {
-  background: var(--color-gray-900);
-  color: var(--color-white);
+  background: #0c0c22;
+  color: #fff;
   font-size: 1.2rem;
   position: absolute;
   right: 2rem;
@@ -365,7 +587,7 @@ nav {
   cursor: pointer;
   padding: 0;
   font-size: 2rem;
-  background: var(--color-primary);
+  background: #6f6af8;
 }
 
 .profile__details h1 {
@@ -375,16 +597,12 @@ nav {
 .form.profile__form {
   margin-top: 3rem;
   margin-inline: auto;
-  width: var(--form-width);
+  width: 50%;
 }
 
-
-
-
-
-
-
-
+.btn.profile{
+  width: 26rem;
+}
 
 /*======================== AUTHORS ========================*/
 .authors__container {
@@ -394,12 +612,12 @@ nav {
 }
 
 .author {
-  background: var(--color-white);
+  background:#fff;
   padding: 1rem;
-  border-radius: var(--radius-3);
+  border-radius: 1rem;
   display: flex;
   gap: 1.3rem;
-  transition: var(--transition);
+  transition: all 300ms ease;
 }
 
 .author:hover {
@@ -410,7 +628,7 @@ nav {
   width: 5rem;
   aspect-ratio: 1/1;
   border-radius: 50%;
-  border: 0.3rem solid var(--color-bg);
+  border: 0.3rem solid hwb(240 95% 0%);
   overflow: hidden;
 }
 
@@ -440,7 +658,7 @@ nav {
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  background: var(--color-white);
+  background: #fff;
   padding: 0.5rem 1.2rem;
   border-radius: 0.5rem;
 }
@@ -465,7 +683,59 @@ nav {
 
 
 
+ 
+/****************************/
+/*SECTION FOOTER*/
+/****************************/
+.footer {
+  background-color: #d3e8fa;
+  padding: 4.8rem 0 3.2rem 0;
+}
 
+.logo-img-footer {
+  height: 20rem;
+}
+.footer-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+}
+
+.footer-section-horizontal {
+  display: flex;
+  gap: 3.2rem;
+}
+.footer-item {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  font-size: 2rem;
+}
+
+.icon {
+  width: 3rem;
+  height: 3rem;
+}
+
+.icon-social-media {
+  width: 5.2rem;
+  height: 5.2rem;
+}
+
+.footer-link:link,
+.footer-link:visited {
+  text-decoration: none;
+  font-size: 1.6rem;
+  color: #555;
+  transition: all 0.3s;
+}
+
+.footer-link:hover,
+.footer-link:active {
+  color: #333;
+}
+
+  
 
 
 
@@ -489,7 +759,7 @@ nav {
   }
 
   .container {
-    width: var(--container-width-md);
+    width: 92%;
   }
 
 
@@ -500,7 +770,7 @@ nav {
 
 /* NAVBAR */
 .nav__container {
-  width: var(--container-width-md);
+  width: 92%;
   position: relative;
 }
 
@@ -549,7 +819,7 @@ nav {
   
   .nav__menu li a {
     display: block;
-    background: var(--color-white);
+    background: #fff;
     padding: 0.85rem 2.5rem;
   }
   

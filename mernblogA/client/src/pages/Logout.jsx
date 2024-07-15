@@ -1,21 +1,28 @@
-import React, { useContext, useEffect } from 'react'
-import { UserContext } from '../context/userContext'
-import { useNavigate } from 'react-router-dom'
-import axios from 'axios'
+import  { useContext, useEffect } from 'react';
+import { UserContext } from '../context/userContext';
+import { useNavigate } from 'react-router-dom';
 
 const Logout = () => {
-  const {currentUser, setCurrentUser} = useContext(UserContext)
+  const { currentUser, setCurrentUser } = useContext(UserContext);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    // axios.get(`${process.env.REACT_APP_BASE_URL}/users/logout/${currentUser.id}`)
-    setCurrentUser(null)
-  }, [])
-  
-  const navigate = useNavigate()
-  navigate('/login')
-  return (
-    <div></div>
-  )
-}
+    const logoutUser = async () => {
+      try {
+        // Limpiar el usuario actual en el contexto
+        setCurrentUser(null);
 
-export default Logout
+        // Redireccionar a la página de login después de hacer logout
+        navigate('/login');
+      } catch (error) {
+        console.error('Error during logout:', error);
+      }
+    };
+
+    logoutUser(); // Llamar al método de logout al montar el componente
+  }, [currentUser, setCurrentUser, navigate]); 
+
+  return null; 
+};
+
+export default Logout;
