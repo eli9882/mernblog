@@ -190,7 +190,9 @@ h4 {
 h5 {
   line-height: 1.4;
 }
-
+.centertitle{
+  text-align: center;
+}
 img {
   display: block;
   width: 100%;

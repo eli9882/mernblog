@@ -573,6 +573,13 @@
   color: #228be6;
 }
 
+.cta-login{
+  grid-template-columns: 1.5fr 1fr;
+  box-shadow: 0 2.4rem 4.8rem rgba(0, 0, 0, 0.15);
+  border-radius: 11px;
+  background-image: linear-gradient(to right bottom, #d3e8fa, #d3e8fa);
+  overflow: hidden;
+}
 /* change the background of quill editor */
 .ql-editor {
   background: #fff;

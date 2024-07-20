@@ -38,8 +38,10 @@ const Register = () => {
     return (
         <section className="register">
             <div className="container">
-                <h2>Sign Up</h2>
-                <form onSubmit={registerUser} className='form register__form'>
+            <div className="cta-login">
+            <div className="cta-text-box">
+                <h2 className="heading-secondary centertitle">Sign Up</h2>
+                <form onSubmit={registerUser} className='form register__form cta-form'>
                     {error && <p className='form__error-message'>{error}</p>}
                     <input type="text" placeholder='Full Name' name="name" value={userData.name} onChange={changeInputHandler} autoFocus/>
                     <input type="email" placeholder='Email' name="email" value={userData.email} onChange={changeInputHandler} />
@@ -48,6 +50,8 @@ const Register = () => {
                     <button type="submit" className='btn general btn--form'>Register</button>
                 </form>
                 <small>Already have an account? <Link to="/login">sign in</Link></small>
+            </div>
+            </div>
             </div>
         </section>
     )

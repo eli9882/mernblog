@@ -38,8 +38,10 @@ const Login = () => {
     return (
         <section className="login">
             <div className="container">
-            <h2 className="heading-secondary">Sign In</h2>
-                <form onSubmit={loginUser} className='form login__form'>
+            <div className="cta-login">
+            <div className="cta-text-box">
+            <h2 className="heading-secondary centertitle">Sign In</h2>
+                <form onSubmit={loginUser} className='form login__form cta-form'>
                     {error && <p className="form__error-message">{error}</p>}
                     <input type="email" placeholder='Email' name='email' value={userData.email} onChange={changeHandler} autoFocus />
                     <input type="password" placeholder='Password' name='password' value={userData.password} onChange={changeHandler} />
@@ -47,6 +49,8 @@ const Login = () => {
                   
                 </form>
                 <small>Don't have an account? <Link to="/register">sign up</Link></small>
+            </div>
+            </div>
             </div>
         </section>
     )
