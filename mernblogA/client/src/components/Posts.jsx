@@ -46,7 +46,7 @@ const Posts = () => {
   return (
     <section className="posts" id="blogs">
      
-      <h2 className="section-heading">Blog</h2>
+      <h2 className="section-heading spost">Blog</h2>
       {posts.length ? (
         <Slider {...settings}>
           {posts.map(({ _id: id, thumbnail, category, title, description, creator, createdAt }) => (

@@ -75,9 +75,7 @@
     grid-template-columns: 1fr;
   }
 
-  .btn--form {
-    margin-top: 1.2rem;
-  }
+  
   /* MOBILE NAVIGATION */
   .btn-mobile-nav {
     display: block;
@@ -423,6 +421,10 @@
     .btn--outline::after {
       content: "Contactar";
       padding: 1.6rem 3.2rem;
+    }
+    .btn--form{
+      padding: 1.6rem 5.2rem;
+      margin-left: 107px;
     }
 
     .hero {

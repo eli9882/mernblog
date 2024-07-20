@@ -2,7 +2,6 @@ import React, { useContext, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { FaBars } from "react-icons/fa";
 import { AiOutlineClose } from "react-icons/ai";
-
 import Logo from '../Recursos/Logos/Logo.png';
 import { UserContext } from '../context/userContext';
 
@@ -32,13 +31,13 @@ const Header = () => {
   };
 
   return (
-    <nav>
+    <header className="header">
       <Link to="/" className="scroll-link" onClick={closeNavHandler}>
         <img className='logo' src={Logo} alt="Logo" />
       </Link> 
-      <div className="container nav__container">
+      <nav className="main-nav">
         {!currentUser?.id && isNavShowing && (
-          <ul className='nav__menu'>
+          <ul className='main-nav-list'>
             <li>
               <a className="main-nav-link scroll-link" href="#commitment">Nuestro Compromiso</a>
             </li>
@@ -72,11 +71,16 @@ const Header = () => {
             </li>
           </ul>
         )}
-      </div>
-      <button className="nav__toggle-btn" onClick={() => setIsNavShowing(!isNavShowing)}>
-        {isNavShowing ? <AiOutlineClose /> : <FaBars />}
-      </button>
-    </nav>
+      </nav>
+      <button className="btn-mobile-nav" onClick={() => setIsNavShowing(prev => !prev)}>
+  {isNavShowing ? (
+    <AiOutlineClose className="icon-mobile-nav" />
+  ) : (
+    <FaBars className="icon-mobile-nav" />
+  )}
+</button>
+
+      </header>
   );
 };
 

@@ -1,9 +1,6 @@
-
-*, *::before, *::after {
-  margin: 0;
+* {
   padding: 0;
-  border: 0;
-  outline: 0;
+  margin: 0;
   box-sizing: border-box;
 }
 
@@ -26,57 +23,71 @@ body {
 /* Container */
 .container {
   max-width: 120rem;
-  padding: 13px 4.2rem;
+  padding: 0 3.2rem;
   margin: 0 auto;
-  width: 84%;
-  margin-inline: auto;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
 }
 
-
-.btn {
-  display: inline-block;
-  text-decoration: none;
-  font-size: 2rem;
-  font-weight: 600;
-  padding: 1.6rem 3.2rem;
-  border-radius: 9px;
-  border: none;
-  cursor: pointer;
-  font-family: inherit;
-  transition: all 0.3s;
-  
-
-}
-.btn.general{
-  width: 17rem;
-}
-.btn.primary {
-  background:  #4cb9e7;
-  color: #fff;
+input, select, textarea {
+  width: 100%;
+  padding: 0.6rem 1rem;
+  border-radius: 0.3rem;
+  resize: none;
 }
 
-.btn.sec {
-  background: #228be6;
-  color: #fff;
+.featured__wrapper {
+  display: flex;
+  gap: 0.5rem;
 }
 
-.btn.category {
-  background: hwb(240 95% 0%);
-  color:  #6f6af8;
-  font-size: 0.75rem;
-  font-weight: 400;
+label, input[type="checkbox"] {
+  width: fit-content;
 }
-.btn.sm {
+
+label {
+  font-size: 0.9rem;
+}
+
+.form__error-message {
+  background: var(--color-red);
+  color: var(--color-white);
   font-size: 0.8rem;
-  padding: 0.3rem 0.7rem;
-  border-radius: 0.4rem;
+  padding: 0.6rem 1rem;
+  border-radius: var(--radius-1);
+  display: block;
+  margin-bottom: 1rem;
 }
 
-.btn.danger {
-  background: rgb(255, 63, 63);
-  color: #fff;
+
+
+
+
+
+
+
+/* fix for ql editor overflow */
+.ql-editor {
+  overflow: scroll;
+  height: 8rem;
+  max-height: 15rem;
 }
 
+.center {
+  text-align: center;
+  padding-top: 5rem;
+  margin-inline: center;
+  display: block;
+  width: 100%;
+}
+
+/* little style on error page */
+.error-page h2 {
+  margin-top: 3rem;
+}
 
 /* Grid System */
 
@@ -111,15 +122,15 @@ body {
 
 /* Heading Clases */
 
-
+.heading-primary,
 .heading-secondary,
-.heading-tertiary {
+.heading-tertiary,h1, h2, h3, h4, h5, h6 {
   font-weight: 700;
   color: #333;
   letter-spacing: -0.5px;
 }
 
-.heading-primary {
+.heading-primary{
   font-size: 5.2rem;
   line-height: 1.05;
   margin-bottom: 3.2rem;
@@ -137,7 +148,7 @@ body {
   margin-bottom: 3.2rem;
 }
 
-.subheading {
+.subheading{
   display: block;
   font-size: 1.6rem;
   font-weight: 500;
@@ -146,18 +157,38 @@ body {
   letter-spacing: 0.75px;
 }
 
-.section-heading {
+.section-heading{
   align-items: center;
   text-align: center;
   color: #228be6;
   margin-bottom: 8rem;
   font-weight: 700;
   font-size: 2.4rem;
+ 
+}
+.spost{
+  margin-top: 20px;
 }
 
-*:focus {
-  outline: none;
-  box-shadow: 0 0 0 0.8rem hsla(208, 80%, 52%, 0.5);
+h1 {
+  font-size: 2.2rem;
+}
+
+h2 {
+  font-size: 1.9rem;
+}
+
+h3 {
+  font-size: 1.3rem;
+  line-height: 1.25;
+}
+
+h4 {
+  font-size: 1.1rem;
+}
+
+h5 {
+  line-height: 1.4;
 }
 
 img {
@@ -166,59 +197,7 @@ img {
   height: 100%;
   object-fit: cover;
 }
-
-
-.form {
-  display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
-}
-
-input, select, textarea {
-  width: 100%;
-  padding: 0.6rem 1rem;
-  border-radius: 0.3rem;
-  resize: none;
-}
-.featured__wrapper {
-  display: flex;
-  gap: 0.5rem;
-}
-
-label, input[type="checkbox"] {
-  width: fit-content;
-}
-
-label {
-  font-size: 0.9rem;
-}
-
-.form__error-message {
-  background:  rgb(255, 63, 63);
-  color: #fff;
-  font-size: 0.8rem;
-  padding: 0.6rem 1rem;
-  border-radius: 0.3rem;
-  display: block;
-  margin-bottom: 1rem;
-}
-
-/* fix for ql editor overflow */
-.ql-editor {
-  overflow: scroll;
-  height: 8rem;
-  max-height: 15rem;
-}
-
-.center {
-  text-align: center;
-  padding-top: 5rem;
-  margin-inline: center;
-  display: block;
-  width: 100%;
-}
-
-/* little style on error page */
-.error-page h2 {
-  margin-top: 3rem;
+*:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.8rem hsla(208, 80%, 52%, 0.5);
 }

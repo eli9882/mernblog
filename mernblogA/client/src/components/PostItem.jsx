@@ -13,13 +13,12 @@ const PostItem = ({thumbnail, category, postID, title, description, authorID, cr
                 <img src={`${process.env.REACT_APP_ASSET_URL}/uploads/${thumbnail}`} alt={title} />
             </div>
             <div className="post__content">
-                <Link to={`/posts/${postID}`}>
+                <Link to={`/posts/${postID}`}  className='post__content-link'>
                     <h3>{postTitle}</h3>
                 </Link>
                 <p dangerouslySetInnerHTML={{__html: shortDescription}}/>
                 <div className="post__footer">
                     <PostAuthor authorID={authorID} createdAt={createdAt}/>
-                    <Link to={`/posts/categories/${category}`} className='btn category'>{category}</Link>
                 </div>
             </div>
         </article>

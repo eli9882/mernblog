@@ -15,7 +15,7 @@ const Home = () => {
       <section className="section-hero">
         <div className="hero">
           <div>
-            <h1 className="heading-primary heading-hero">
+            <h1 className="heading-hero">
               Centro del Adulto Mayor Hatillo San Sebastian
             </h1>
             <p className="hero-description">
@@ -23,7 +23,7 @@ const Home = () => {
               Compañía y Alegría.
             </p>
 
-            <a href="#footer" className="btn_info btn--outline scroll-link"
+            <a href="#footer" className="btn btn--outline scroll-link"
               ><span>Información de contacto</span></a
             >
           </div>
@@ -225,10 +225,10 @@ const Home = () => {
                 </select>
               </div>
 
-              <button type="submit" className="btn_from btn--form">Enviar</button>
+             
 
             </form>
-           
+            <button type="submit" className="btn btn--form">Enviar</button>
           </div>
           <div
             className="cta-img-box"
