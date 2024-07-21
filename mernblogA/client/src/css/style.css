@@ -441,12 +441,13 @@
 }
 
 .post {
-  background: #fff;
+  background: #d3e8fa;
   padding: 1rem;
   border-radius: 2rem;
   padding-bottom: 2rem;
   transition: all 300ms ease;
   cursor: default;
+  margin: 0 1rem;
 }
 
 .post:hover {
