@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
 import Posts from '../components/Posts'
 import Pasillo from '../Recursos/pasillo.jpg';
 import Cabello from '../Recursos/corte de cabello aulto mayor.jpg';
@@ -7,10 +7,24 @@ import Manualidades from '../Recursos/Manualidades.jpg';
 import Conapam from '../Recursos/Logos/CONAPAM.png';
 import Fodesaf from '../Recursos/Logos/FODESAF.png';
 import Jps from '../Recursos/Logos/JPS.jpeg';
+import Loader from '../components/Loader';
 
 const Home = () => {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulando una llamada a una API o una carga de datos
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 2000); // 2 segundos de espera para la simulación
+  }, []);
+
+  if (isLoading) {
+    return <Loader />;
+  }
   return (
     <main>
+      
       {/* Hero */}
       <section className="section-hero">
         <div className="hero">
@@ -257,6 +271,7 @@ const Home = () => {
           </div>
         </div>
       </section>
+    
     </main>
   )
 }

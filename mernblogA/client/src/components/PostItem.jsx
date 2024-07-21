@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import PostAuthor from './PostAuthor'
 
-const PostItem = ({thumbnail, category, postID, title, description, authorID, createdAt}) => {
+const PostItem = ({thumbnail, postID, title, description, authorID, createdAt}) => {
     const shortDescription = description.length > 145 ?description.substr(0, 145) + '...' : description;
     const postTitle = title.length > 30 ? title.substr(0, 30) + "..." : title;
 

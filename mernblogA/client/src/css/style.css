@@ -377,6 +377,9 @@
     background-size: cover;
     background-position: center;
   }
+  .cta-img-box.loading {
+    background-image: none !important;
+  }
   
   .cta-form {
     display: grid;
@@ -480,9 +483,26 @@
 }
 .post__content p {
   font-size: 1.5rem;
-  line-height: 1.2;
+  line-height: 1.2; /* Ajusta esto según tus necesidades */
   margin: 1rem 0 0.6rem;
+  max-height: 4.5em; /* Ajusta esto en función de line-height y el número de líneas */
+  overflow: hidden;
 }
+
+/*.post__content p {
+  font-size: 1.5rem;
+  line-height: 1;
+  margin: 1rem 0 0.6rem;
+  max-height: 4.5em; 
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; 
+  -webkit-box-orient: vertical;*/
+  /* 
+ 
+}*/
+
 .post__footer {
   display: flex;
   justify-content: space-between;

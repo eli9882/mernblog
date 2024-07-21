@@ -76,7 +76,7 @@ const Posts = () => {
   };
 
   return (
-    <Container id='client'>
+    <Container id='post'>
     <section className="posts" id="blogs">
       <h2 className="section-heading spost">Blog</h2>
       {posts.length ? (
