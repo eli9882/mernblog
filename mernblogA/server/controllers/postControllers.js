@@ -13,8 +13,8 @@ const { mongoose } = require('mongoose')
 // PROTECTED
 const createPost = async (req, res, next) => {
     try {
-        let {title, category, description} = req.body;
-        if(!title || !category || !description || !req.files) {
+        let {title, description} = req.body;
+        if(!title || !description || !req.files) {
             return next(new HttpError("Fill in all fields and choose thumbnail.", 422))
         }
         
@@ -32,7 +32,7 @@ const createPost = async (req, res, next) => {
             if(err) {
                 return next(new HttpError(err))
             } else {
-                const newPost = await Post.create({title, category, description, thumbnail: newFilename, creator: req.user.id});
+                const newPost = await Post.create({title, description, thumbnail: newFilename, creator: req.user.id});
                 if(!newPost) {
                     return next(new HttpError("Something went wrong.", 422))
                 }
@@ -124,9 +124,9 @@ const editPost = async (req, res, next) => {
     let updatedPost
     try {
         const postID = req.params.id;
-        let {title, category, description} = req.body;
+        let {title, description} = req.body;
         // ReactQuill has a paragraph opening and closing tag with a break tag in between so there are 11 characters in there already. That's why 12 
-        if(!title || !category || description.length < 12) {
+        if(!title || description.length < 12) {
             return next(new HttpError("Fill all fields", 422))
         }
         
@@ -136,7 +136,7 @@ const editPost = async (req, res, next) => {
         if(req.user.id == oldPost.creator) {
             // update post without thumbnail
             if(!req.files) {
-                updatedPost = await Post.findByIdAndUpdate(postID, {title, category, description}, {new: true})
+                updatedPost = await Post.findByIdAndUpdate(postID, {title, description}, {new: true})
             } else {
                 // delete old thumbnail from uploads
                 fs.unlink(path.join(__dirname, '..', 'uploads', oldPost.thumbnail), async (err) => {
@@ -159,7 +159,7 @@ const editPost = async (req, res, next) => {
                     }
                 })
         
-                updatedPost = await Post.findByIdAndUpdate(postID, {title, category, description, thumbnail: newFilename}, {new: true})
+                updatedPost = await Post.findByIdAndUpdate(postID, {title, description, thumbnail: newFilename}, {new: true})
             }
         } else {
             return next(new HttpError("Couldn't update post.", 403))

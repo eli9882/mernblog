@@ -69,7 +69,7 @@ const Dashboard = () => {
                                 <h5>{post.title}</h5>
                             </div>
                             <div className="dashboard__post-actions">
-                                <Link to={`/posts/${post._id}`} className='btn sec sm'>View</Link>
+                                <Link to={`/posts/${post._id}`} className='btn view sm'>View</Link>
                                 <Link to={`/posts/${post._id}/edit`} className='btn primary sm'>Edit</Link>
                                 <Link onClick={() => removePost(post._id)} className='btn danger sm'>Delete</Link>
                             </div>

@@ -62,18 +62,11 @@ label {
   margin-bottom: 1rem;
 }
 
-
-
-
-
-
-
-
 /* fix for ql editor overflow */
 .ql-editor {
   overflow: scroll;
-  height: 8rem;
-  max-height: 15rem;
+  height: 35rem;
+  max-height: 45rem;
 }
 
 .center {
@@ -199,6 +192,25 @@ img {
   height: 100%;
   object-fit: cover;
 }
+.btn.primary {
+  background: #6f6af8;
+  color:  #fff;
+}
+.btn.view {
+  background:  #228be6;
+  color:  #fff;
+}
+.btn.sm {
+  font-size: 0.8rem;
+  padding: 0.3rem 0.7rem;
+  border-radius: 0.4rem;
+}
+
+.btn.danger {
+  background: rgb(255, 63, 63);
+  color:  #fff;
+}
+
 *:focus {
   outline: none;
   box-shadow: 0 0 0 0.8rem hsla(208, 80%, 52%, 0.5);

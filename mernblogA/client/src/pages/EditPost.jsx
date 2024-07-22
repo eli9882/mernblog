@@ -7,7 +7,6 @@ import { UserContext } from '../context/userContext';
 
 const EditPost = () => {
     const [title, setTitle] = useState('');
-    const [category, setCategory] = useState('Uncategorized');
     const [description, setDescription] = useState('');
     const [thumbnail, setThumbnail] = useState('');
     const [error, setError] = useState('');
@@ -41,8 +40,7 @@ const EditPost = () => {
         'link', 'image'
     ];
 
-    const POST_CATEGORIES = ["Agriculture", "Business", "Education", "Entertainment", "Art", "Investment", "Uncategorized", "Weather"];
-
+    
     useEffect(() => {
         const getPost = async () => {
             try {
@@ -63,7 +61,6 @@ const EditPost = () => {
 
         const postData = new FormData();
         postData.set('title', title);
-        postData.set('category', category);
         postData.set('description', description);
         postData.set('thumbnail', thumbnail);
 
@@ -84,23 +81,18 @@ const EditPost = () => {
         }
     };
 
-    const changeCat = (newCat) => {
-        setCategory(newCat);
-    };
+   
 
     return (
         <section className="create-post">
             <div className="container create-post__container">
-                <h2>Edit Post</h2>
+                <h2 className="section-heading spost">Edit Post</h2>
                 {error && <p className="form__error-message">{error}</p>}
                 <form onSubmit={editPost} className='form create-post__form' encType="multipart/form-data">
                     <input type="text" placeholder='Title' value={title} onChange={e => setTitle(e.target.value)} />
-                    <select name='category' value={category} onChange={e => changeCat(e.target.value)}>
-                        {POST_CATEGORIES.map(cat => <option key={cat}>{cat}</option>)}
-                    </select>
                     <ReactQuill modules={modules} formats={formats} value={description} onChange={setDescription}></ReactQuill>
                     <input type="file" onChange={e => setThumbnail(e.target.files[0])} accept="png, jpg, jpeg" />
-                    <button type="submit" className='btn general btn--form'>Update</button>
+                    <button type="submit" className='btn btn--form' style={{ width: '200px', maxWidth: '100%' }}>Update</button>
                 </form>
             </div>
         </section>
