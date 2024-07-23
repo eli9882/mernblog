@@ -66,7 +66,7 @@ const Dashboard = () => {
                                 <div className="dashboard__post-thumbnail">
                                     <img src={`${process.env.REACT_APP_ASSET_URL}/uploads/${post.thumbnail}`} alt="" />
                                 </div>
-                                <h5>{post.title}</h5>
+                                <h3>{post.title}</h3>
                             </div>
                             <div className="dashboard__post-actions">
                                 <Link to={`/posts/${post._id}`} className='btn view sm'>View</Link>

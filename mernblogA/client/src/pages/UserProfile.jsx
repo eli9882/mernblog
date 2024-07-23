@@ -90,6 +90,9 @@ const UserProfile = () => {
 
     return (
         <section className="profile">
+            <div className="container">
+            <div className="cta-profile">
+            <div className="cta-text-box">
             <div className="container profile__container">
                 <Link to={`/myposts/${currentUser?.id}`} className='btn'>My Posts</Link>
 
@@ -109,7 +112,8 @@ const UserProfile = () => {
                     <h1>{name}</h1>
 
                     {/* Form to update user details */}
-                    <form className='form profile__form' onSubmit={updateUserDetail}>
+               
+                    <form className='form profile__form cta-form' onSubmit={updateUserDetail}>
                         {error && <p className='form__error-message'>{error}</p>}
                         <input type="text" placeholder='Full Name' value={name} onChange={e => setName(e.target.value)} />
                         <input type="email" placeholder='Email' value={email} onChange={e => setEmail(e.target.value)} />
@@ -119,6 +123,9 @@ const UserProfile = () => {
                         <button type="submit" className=' btn profile btn--form'>Update my details</button>
                     </form>
                 </div>
+            </div>
+            </div>
+            </div>
             </div>
         </section>
     )
