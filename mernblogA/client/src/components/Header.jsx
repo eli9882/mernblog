@@ -9,49 +9,46 @@ const Header = () => {
   const { currentUser } = useContext(UserContext);
   const [isNavShowing, setIsNavShowing] = useState(window.innerWidth > 800);
 
+  const closeNavHandler = () => {
+    setIsNavShowing(false);
+  };
+
   useEffect(() => {
     const handleResize = () => {
-      setIsNavShowing(window.innerWidth > 800);
+      if (window.innerWidth > 800) {
+        setIsNavShowing(true);
+      }
     };
 
     window.addEventListener('resize', handleResize);
 
-    // Cleanup event listener on component unmount
     return () => {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
 
-  const closeNavHandler = () => {
-    if (window.innerWidth < 800) {
-      setIsNavShowing(false);
-    } else {
-      setIsNavShowing(true);
-    }
-  };
-
   return (
     <header className="header">
       <Link to="/" className="scroll-link" onClick={closeNavHandler}>
         <img className='logo' src={Logo} alt="Logo" />
-      </Link> 
+      </Link>
       <nav className="main-nav">
         {!currentUser?.id && isNavShowing && (
           <ul className='main-nav-list'>
             <li>
-              <a className="main-nav-link scroll-link" href="#commitment">Nuestro Compromiso</a>
+              <a className="main-nav-link scroll-link" href="#commitment" onClick={closeNavHandler}>Nuestro Compromiso</a>
             </li>
             <li>
-              <a className="main-nav-link scroll-link" href="#blogs">Blog</a>
+              <a className="main-nav-link scroll-link" href="#blogs" onClick={closeNavHandler}>Blog</a>
             </li>
             <li>
-              <a className="main-nav-link scroll-link" href="#TCU">Trabajo Comunal</a>
+              <a className="main-nav-link scroll-link" href="#TCU" onClick={closeNavHandler}>Trabajo Comunal</a>
             </li>
             <li>
-              <a className="main-nav-link scroll-link" href="#collaborators">Colaboradores</a>
+              <a className="main-nav-link scroll-link" href="#collaborators" onClick={closeNavHandler}>Colaboradores</a>
             </li>
             <li>
-              <a className="main-nav-link scroll-link" href="#footer">Informacion de contacto</a>
+              <a className="main-nav-link scroll-link" href="#footer" onClick={closeNavHandler}>Informacion de contacto</a>
             </li>
             <li>
               <Link className="main-nav-link scroll-link" to={'/login'} onClick={closeNavHandler}>Login</Link>
@@ -59,7 +56,7 @@ const Header = () => {
           </ul>
         )}
         {currentUser?.id && isNavShowing && (
-          <ul className='nav__menu'>
+          <ul className='main-nav-list'>
             <li>
               <Link className="main-nav-link scroll-link" to={`/profile/${currentUser?.id}`} onClick={closeNavHandler}>{currentUser?.name}</Link>
             </li>
@@ -72,16 +69,12 @@ const Header = () => {
           </ul>
         )}
       </nav>
-      <button className="btn-mobile-nav" onClick={() => setIsNavShowing(prev => !prev)}>
-  {isNavShowing ? (
-    <AiOutlineClose className="icon-mobile-nav" />
-  ) : (
-    <FaBars className="icon-mobile-nav" />
-  )}
-</button>
-
-      </header>
+      <button className="nav__toggle-btn" onClick={() => setIsNavShowing(!isNavShowing)}>
+        {isNavShowing ? <AiOutlineClose /> : <FaBars />}
+      </button>
+    </header>
   );
 };
 
 export default Header;
+
