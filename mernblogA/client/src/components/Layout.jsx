@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import Header from './Header';
 import Footer from './Footer';
 import Loader from './Loader'; // Asegúrate de tener un componente Loader
 
 const Layout = () => {
   const [isLoading, setIsLoading] = useState(true);
+  const location = useLocation();
+  const isLoginPage = location.pathname === '/login';
 
   useEffect(() => {
     // Simulando una carga inicial
@@ -18,7 +20,7 @@ const Layout = () => {
 
   return (
     <>
-      <Header />
+      <Header showMenu={!isLoginPage} />
       {isLoading ? <Loader /> : <Outlet />}
       <Footer />
     </>

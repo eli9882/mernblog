@@ -1,9 +1,15 @@
 import React from "react";
 import Logo from '../Recursos/Logos/Logo.png';
-import { Link } from 'react-router-dom';
+
 
 
 const Footer = () => {
+
+  // Función para hacer scroll al top
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+  
   return (
     //FOOTER
     <footer className="footer" id="footer">
@@ -11,9 +17,9 @@ const Footer = () => {
         <div className="grid grid--4-cols grid--center-v">
           {/*Logo*/}
           <div className="logo-footer">
-            <Link to="/" className="scroll-link">
-            <img className="logo-img-footer" src={Logo} alt="Logo" />
-            </Link>  
+            <button onClick={scrollToTop} className="scroll-link" style={{ background: 'none', border: 'none', padding: 0 }}>
+              <img className="logo-img-footer" src={Logo} alt="Logo" />
+            </button>
           </div>
             {/* Phone numbers*/}
           <div className="footer-section footer-phones">
