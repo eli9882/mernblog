@@ -1,4 +1,4 @@
-import React from 'react';
+import React , { useEffect }  from 'react';
 import Posts from '../components/Posts'
 import Pasillo from '../Recursos/pasillo.jpg';
 import Cabello from '../Recursos/corte de cabello aulto mayor.jpg';
@@ -10,7 +10,45 @@ import Jps from '../Recursos/Logos/JPS.jpeg';
 
 
 const Home = () => {
+  useEffect(() => {
+    const form = document.getElementById('cta-form');
+    
+    const handleSubmit = (event) => {
+      event.preventDefault();
+  
+      const formData = new FormData(form);
+  
+      fetch(form.action, {
+        method: form.method,
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      }).then(response => {
+        if (response.ok) {
+          form.reset();
+          // Mostrar la ventana emergente de confirmación
+          alert("¡Gracias! El formulario ha sido enviado con éxito.");
+        } else {
+          response.json().then(data => {
+            if (data.errors) {
+              alert(data.errors.map(error => error.message).join(", "));
+            } else {
+              alert("Oops! Hubo un problema al enviar el formulario");
+            }
+          });
+        }
+      }).catch(error => {
+        alert("Oops! Hubo un problema al enviar el formulario");
+      });
+    };
 
+    form.addEventListener('submit', handleSubmit);
+    
+    return () => {
+      form.removeEventListener('submit', handleSubmit);
+    };
+  }, []);
   return (
     <main>
       
