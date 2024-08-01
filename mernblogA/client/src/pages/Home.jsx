@@ -1,4 +1,4 @@
-import React , { useEffect }  from 'react';
+import React  from 'react';
 import Posts from '../components/Posts'
 import Pasillo from '../Recursos/pasillo.jpg';
 import Cabello from '../Recursos/corte de cabello aulto mayor.jpg';
@@ -182,7 +182,7 @@ const Home = () => {
               Tu contribución puede marcar una gran diferencia.
             </p>
 
-            <form id="cta-form" className="cta-form" name='sign-up' netlify>
+            <form id="cta-form" className="cta-form" name='sign-up'method='post' data-netlify="true" onSubmit="submit">
               <div>
                 <label htmlFor="full-name">Nombre completo</label>
                 <input

@@ -13,17 +13,15 @@ const Header = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth >900) {
+      if (window.innerWidth > 900) {
         setIsNavShowing(true);
       } else {
         setIsNavShowing(false);
       }
     };
 
-    // Agregar el listener de redimensionamiento
     window.addEventListener('resize', handleResize);
 
-    // Limpiar el listener cuando el componente se desmonte
     return () => {
       window.removeEventListener('resize', handleResize);
     };
@@ -41,8 +39,8 @@ const Header = () => {
         <img className='logo' src={Logo} alt="Logo" />
       </Link>
       {!isLoginPage && (
-        <nav className="main-nav">
-          {!currentUser?.id && isNavShowing && (
+        <nav className={`main-nav ${isNavShowing ? 'nav-open' : ''}`}>
+          {!currentUser?.id && (
             <ul className='main-nav-list'>
               <li>
                 <a className="main-nav-link scroll-link" href="#commitment" onClick={closeNavHandler}>Nuestro Compromiso</a>
@@ -64,7 +62,7 @@ const Header = () => {
               </li>
             </ul>
           )}
-          {currentUser?.id && isNavShowing && (
+          {currentUser?.id && (
             <ul className='main-nav-list'>
               <li>
                 <Link className="main-nav-link scroll-link" to={`/profile/${currentUser?.id}`} onClick={closeNavHandler}>{currentUser?.name}</Link>
