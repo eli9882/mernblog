@@ -171,76 +171,69 @@ const Home = () => {
 
       <Posts/>
 
-      
-    <section className="section-cta"  id="TCU">
-      <div className="container">
-        <div className="cta">
-          <div className="cta-text-box">
-            <h2 className="heading-secondary">Trabajo Comunal</h2>
-            <p className="cta-text">
-              Invitamos a todos a participar en proyectos de trabajo comunitario en nuestro centro para adultos mayores. 
-              Tu contribución puede marcar una gran diferencia.
-            </p>
+      <section className="section-cta" id="TCU">
+  <div className="container">
+    <div className="cta">
+      <div className="cta-text-box">
+        <h2 className="heading-secondary">Trabajo Comunal</h2>
+        <p className="cta-text">
+          Invitamos a todos a participar en proyectos de trabajo comunitario en nuestro centro para adultos mayores. 
+          Tu contribución puede marcar una gran diferencia.
+        </p>
 
-            <form id="cta-form" className="cta-form" name='sign-up'method='post' data-netlify="true" onSubmit="submit">
-              <div>
-                <label htmlFor="full-name">Nombre completo</label>
-                <input
-                  id="full-name"
-                  type="text"
-                  placeholder="John Smith"
-                  name="Nombre Completo:"
-                  required
-                />
-              </div>
-
-              <div>
-                <label htmlFor="email">Correo electrónico</label>
-                <input
-                  id="email"
-                  type="email"
-                  placeholder="me@example.com"
-                  name="Correo electrónico:"
-                  required
-                />
-              </div>
-
-              <div>
-                <label htmlFor="phone">Teléfono</label>
-                <input
-                  id="phone"
-                  type="phone"
-                  placeholder="88888888"
-                  name="Telefono:"
-                  required
-                />
-              </div>
-
-              <div>
-                <label htmlFor="select-where">Tipo de Trabajo Comunitario:</label>
-                <select id="select-where"name="Tipo de Trabajo Comunitario:" required>
-                  <option value="">Seleccione el tipo de TC</option>
-                  <option value="Trabajo Comunal Universitario (TCU)">Trabajo Comunal Universitario (TCU)</option>
-                  <option value="Trabajo Comunal Judicial (TCJ)">Trabajo Comunal Judicial (TCJ)</option>
-                  <option value="Servicio Social Estudiantil (SSE)">Servicio Social Estudiantil (SSE)</option>
-                  <option value="Voluntariado Comunitario (VC)">Voluntariado Comunitario (VC)</option>
-                  <option value="Otros">Otros</option>
-                </select>
-              </div>
-
-             
-
-            </form>
-            <button type="submit" className="btn btn--form">Enviar</button>
+        <form id="cta-form" className="cta-form" name="sign-up" method="post" data-netlify="true">
+          <div>
+            <label htmlFor="full-name">Nombre completo</label>
+            <input
+              id="full-name"
+              type="text"
+              placeholder="John Smith"
+              name="Nombre Completo"
+              required
+            />
           </div>
-          <div
-            className="cta-img-box"
-            role="img"
-            aria-label="Woman enjoying food"
-          ></div>
-        </div>
+
+          <div>
+            <label htmlFor="email">Correo electrónico</label>
+            <input
+              id="email"
+              type="email"
+              placeholder="me@example.com"
+              name="Correo electrónico"
+              required
+            />
+          </div>
+
+          <div>
+            <label htmlFor="phone">Teléfono</label>
+            <input
+              id="phone"
+              type="phone"
+              placeholder="88888888"
+              name="Telefono"
+              required
+            />
+          </div>
+
+          <div>
+            <label htmlFor="select-where">Tipo de Trabajo Comunitario:</label>
+            <select id="select-where" name="Tipo de Trabajo Comunitario" required>
+              <option value="">Seleccione el tipo de TC</option>
+              <option value="Trabajo Comunal Universitario (TCU)">Trabajo Comunal Universitario (TCU)</option>
+              <option value="Trabajo Comunal Judicial (TCJ)">Trabajo Comunal Judicial (TCJ)</option>
+              <option value="Servicio Social Estudiantil (SSE)">Servicio Social Estudiantil (SSE)</option>
+              <option value="Voluntariado Comunitario (VC)">Voluntariado Comunitario (VC)</option>
+              <option value="Otros">Otros</option>
+            </select>
+          </div>
+
+          <button type="submit" className="btn btn--form">Enviar</button>
+        </form>
       </div>
-    </section>
+      <div className="cta-img-box" role="img" aria-label="Woman enjoying food"></div>
+    </div>
+  </div>
+</section>
     <section className="section-collaborators" id="collaborators">
         <div className="container">
           <h2 className="section-heading">Nuestros Colaboradores</h2>
