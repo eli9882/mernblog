@@ -1,4 +1,4 @@
-import React  from 'react';
+import React , { useRef } from 'react';
 import Posts from '../components/Posts'
 import Pasillo from '../Recursos/pasillo.jpg';
 import Cabello from '../Recursos/corte de cabello aulto mayor.jpg';
@@ -7,10 +7,36 @@ import Manualidades from '../Recursos/Manualidades.jpg';
 import Conapam from '../Recursos/Logos/CONAPAM.png';
 import Fodesaf from '../Recursos/Logos/FODESAF.png';
 import Jps from '../Recursos/Logos/JPS.jpeg';
+import emailjs from '@emailjs/browser';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 
 const Home = () => {
- 
+  const form = useRef();
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs
+      .sendForm('service_cnqx7s6', 'template_e8to8zi', form.current, {
+        publicKey: 'XK0ZaLDCYVTTtDxLv',
+      })
+      .then(
+        () => {
+          toast.info('¡El formulario se ha enviado correctamente!');
+          form.current.reset();
+          console.log('SUCCESS!');
+        },
+        (error) => {
+          toast.error('¡Error al enviar el formulario! Inténtalo de nuevo.');
+          form.current.reset();
+          console.log('FAILED...', error.text);
+        },
+      );
+  };
+
   return (
     <main>
       
@@ -181,14 +207,14 @@ const Home = () => {
           Tu contribución puede marcar una gran diferencia.
         </p>
 
-        <form id="cta-form" className="cta-form" name="sign-up" method="post" data-netlify="true">
+        <form id="cta-form" className="cta-form" ref={form} onSubmit={sendEmail}>
           <div>
             <label htmlFor="full-name">Nombre completo</label>
             <input
               id="full-name"
               type="text"
               placeholder="John Smith"
-              name="Nombre Completo"
+              name="user_name"
               required
             />
           </div>
@@ -199,7 +225,7 @@ const Home = () => {
               id="email"
               type="email"
               placeholder="me@example.com"
-              name="Correo electrónico"
+              name="user_email"
               required
             />
           </div>
@@ -210,14 +236,14 @@ const Home = () => {
               id="phone"
               type="phone"
               placeholder="88888888"
-              name="Telefono"
+              name="user_phone"
               required
             />
           </div>
 
           <div>
             <label htmlFor="select-where">Tipo de Trabajo Comunitario:</label>
-            <select id="select-where" name="Tipo de Trabajo Comunitario" required>
+            <select id="select-where" name="user_tc" required>
               <option value="">Seleccione el tipo de TC</option>
               <option value="Trabajo Comunal Universitario (TCU)">Trabajo Comunal Universitario (TCU)</option>
               <option value="Trabajo Comunal Judicial (TCJ)">Trabajo Comunal Judicial (TCJ)</option>
@@ -227,7 +253,7 @@ const Home = () => {
             </select>
           </div>
 
-          <button type="submit" className="btn btn--form">Enviar</button>
+          <button type="submit" value="Send" className="btn btn--form">Enviar</button>
         </form>
       </div>
       <div className="cta-img-box" role="img" aria-label="Woman enjoying food"></div>
@@ -253,7 +279,7 @@ const Home = () => {
           </div>
         </div>
       </section>
-    
+      <ToastContainer />
     </main>
   )
 }
