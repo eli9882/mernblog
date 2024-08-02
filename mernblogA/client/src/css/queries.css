@@ -24,6 +24,10 @@
     /* Percentage of user's browser font-size setting */
     font-size: 56.25%;
   }
+  button.btn.btn--form {
+    width: 31%;
+    margin-left: 106px;
+}
 }
 
 /**************************/
@@ -340,8 +344,12 @@
     .btn {
       font-size: 1.4rem;
       padding: 0.4rem 1.2rem;
+      
     }
-
+    .btn--form{
+      width: 50%;
+      margin-left: 68px;
+    }
     .section-hero {
       height: 65rem;
 

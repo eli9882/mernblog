@@ -5,6 +5,7 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { UserContext } from '../context/userContext';
 
+
 const CreatePost = () => {
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
@@ -54,11 +55,12 @@ const CreatePost = () => {
                 withCredentials: true, headers: {Authorization: `Bearer ${token}`}
             })
             if(response.status ===  201) {
+              
                 return navigate('/')
             }
         } catch (err) {
             if(err.response.data.message === "TypeError: Cannot read properties of null (reading 'thumbnail')") {
-                setError("Please choose a thumbnail")
+                setError("Elija una imagen")
             } else {
                 setError(err.response.data.message);
             }
@@ -79,6 +81,7 @@ const CreatePost = () => {
                 
               
             </div>
+           
         </section>
     );
 };

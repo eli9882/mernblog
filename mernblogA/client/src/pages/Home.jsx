@@ -252,10 +252,11 @@ const Home = () => {
               <option value="Otros">Otros</option>
             </select>
           </div>
-
           <button type="submit" value="Send" className="btn btn--form">Enviar</button>
+      
+         
         </form>
-      </div>
+       </div>
       <div className="cta-img-box" role="img" aria-label="Woman enjoying food"></div>
     </div>
   </div>
