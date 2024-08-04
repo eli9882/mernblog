@@ -15,11 +15,10 @@
     text-align: center;
   }
   .logo {
-    height: 9.6rem;
     max-width: 100%;
-    display: block;
-    margin: 0;
+    height: auto;
   }
+  
   
   .main-nav-list {
     list-style: none;
