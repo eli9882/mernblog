@@ -1,5 +1,6 @@
-/* Nav */
-
+/****************************/
+  /*HEADER NAV*/
+  /****************************/
 .header {
     display: flex;
     justify-content: space-between;
@@ -12,6 +13,7 @@
   
   .logo {
     height: 9.6rem;
+    max-width: 100%;
   }
   
   .main-nav-list {
@@ -187,6 +189,7 @@
   
   .logos img {
     height: 5.2rem;
+    max-width: 100%;
   }
   .btn--full:link,
   .btn--full:visited {
@@ -246,81 +249,6 @@
   /****************************/
   /*SECTION TCU*/
   /****************************/
-  /*.section-TCU {
-    position: relative;
-  
-    background-image: linear-gradient(
-        to right bottom,
-        hsla(208, 80%, 52%, 0.2),
-        hsla(208, 80%, 90%, 0.1)
-      ),
-      url("../Recursos/Estudiante.jpg");
-    background-size: cover;
-    background-position: center;
-    height: 70rem;
-  }
-  
-  .TCU-information {
-    position: absolute;
-    top: 45%;
-    left: 78%;
-    transform: translate(-50%, -50%);
-    width: 30%;
-  }
-  
-  .heading-TCU {
-    font-size: 5rem;
-    color: #333;
-    margin-bottom: 3.2rem;
-  }
-  
-  .TCU-description {
-    font-size: 2rem;
-    line-height: 1.6;
-    margin-bottom: 4.8rem;
-  }
-  
-  /****************************/
-  /*SECTION TCU Poder Judicial*/
-  /****************************/
-  /*.section-TCU-Form{
-    position: relative;
-  
-    background-image: linear-gradient(
-        to right bottom,
-        hsla(208, 80%, 52%, 0.2),
-        hsla(208, 80%, 90%, 0.1)
-      ),
-      url("../Recursos/TC.jpg");
-    background-size: cover;
-    background-position: center;
-    height: 70rem;
-  }
-  .form-content{
-    background: linear-gradient(
-      50deg,
-      hsla(208, 80%, 52%, 0.2),
-      hsla(208, 80%, 90%, 0.1)),
-    url("./Recursos/fondotc.jpg");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    padding: 50px;
-    width: 1000px;
-    border-radius: 25px;
-  }
-  
-  .form-content h2 {
-    font-size: 5rem;
-    color: #333;
-    margin-bottom: 3.2rem;
-  }
-  
-  
-  /**************************/
-  /* CTA SECTION */
-  /**************************/
-  
   .section-cta {
     padding: 4.8rem 0 0;
   }
@@ -509,7 +437,9 @@
   overflow: hidden;
 }
 
-/*======================== LOADER ========================*/
+  /****************************/
+  /*LOADER*/
+  /****************************/
 .loader {
   position: fixed;
   top: 0;
@@ -526,8 +456,9 @@
   height: 4.5rem;
 }
 
-
-/*======================== POST DETAILS ========================*/
+  /****************************/
+  /*POST DETAILS*/
+  /****************************/
 .post-detail {
   width: 50%;
   background: #fff;
@@ -561,7 +492,10 @@
   text-align: justify; 
   font-size: 1.2rem;
 }
-/*======================== REGISTER  && GENERAL FORM ========================*/
+
+  /****************************/
+  /*REGISTER  && GENERAL FORM*/
+  /****************************/
 .register, .login, .create-post {
   width: 50%;
   /* -12 because navbar height plus footer top margin */
@@ -598,8 +532,10 @@
 
 
 
+  /****************************/
+  /*USER PROFILE*/
+  /****************************/
 
-/*======================== USER PROFILE ========================*/
 .profile__container {
   display: grid;
   place-items: center;
@@ -673,8 +609,9 @@
 }
 
 
-
-/*======================== AUTHORS ========================*/
+ /****************************/
+  /*AUTHORS*/
+  /****************************/
 .authors__container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -706,7 +643,9 @@
   margin-top: 1rem;
 }
 
-/*======================== DASHBOARD ========================*/
+ /****************************/
+  /*DASHBOARD*/
+  /****************************/
 .dashboard__container {
   display: flex;
   flex-direction: column;
@@ -757,6 +696,7 @@
   
   .logo-img-footer {
     height: 20rem;
+    max-width: 100%;
   }
   .footer-section {
     display: flex;

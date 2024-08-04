@@ -1,7 +1,7 @@
 /* rem and em do NOT depend on html font-size in media queries! Instead, 1rem = 1em = 16px */
 
 /**************************/
-/* BELOW 1350px 
+/* BELOW 1350px Ejemplos de dispositivos: iPad Air (horizontal), MacBook Air (pequeña), algunas tabletas grandes.
 /**************************/
 @media (max-width: 85em) {
   .section-hero {
@@ -11,10 +11,11 @@
   .hero {
     padding: 0 auto;
   }
+  
 }
 
 /**************************/
-/* BELOW 1250px 
+/* BELOW 1250px iPad (vertical), Samsung Galaxy Tab, algunas tabletas de 10 pulgadas.
 /**************************/
 
 @media (max-width: 78em) {
@@ -31,15 +32,23 @@
 }
 
 /**************************/
-/* BELOW 1000px  */
+/* BELOW 1000px  Ejemplos de dispositivos: iPhone X/11/12/13/14, Google Pixel 4/5/6, Samsung Galaxy S20/S21.*/ 
 /**************************/
 @media (max-width: 63em) {
   .main-nav-list {
     gap: 3.2rem;
   }
 
+  .logo {
+    height: 6rem;
+  }
+
   .logo-img-footer {
-    height: 15rem;
+    height: 6rem;
+  }
+
+  .logos img {
+    height: 3rem;
   }
 
   .footer .grid {
@@ -48,7 +57,7 @@
 }
 
 /**************************/
-/* BELOW 900px  */
+/* BELOW 900px  Ejemplos de dispositivos: iPhone 7/8/SE, Samsung Galaxy A52, algunos teléfonos Android de tamaño medio.*/
 /**************************/
 @media (max-width: 56em) {
   html {
@@ -169,7 +178,7 @@
 }
 
 /**************************/
-/* BELOW 700px  */
+/* BELOW 700px  Ejemplos de dispositivos: iPhone 5/SE (primera generación), dispositivos Android de gama baja con pantallas más pequeñas.*/
 /**************************/
 @media (max-width: 44em) {
   html {
@@ -220,10 +229,15 @@
     justify-self: left;
   }
 
+  .logo {
+    height: 10rem;
+  }
   .logo-img-footer {
     height: 20rem;
   }
-
+  .logos img {
+    height: 2.5rem;
+  }
   .footer-email-address,
   .footer-phones,
   .footer-section-horizontal {
@@ -269,7 +283,7 @@
   }
 
   /**************************/
-  /* BELOW 550px  */
+  /* BELOW 550px  Ejemplos de dispositivos: iPhone 4/4S, algunos teléfonos Android antiguos y compactos.*/
   /**************************/
   @media (max-width: 34em) {
     html {
@@ -401,10 +415,21 @@
       height: 32rem;
       grid-row: 1;
     }
+    .logo {
+      height: 4rem;
+    }
+  
+    .logo-img-footer {
+      height: 4rem;
+    }
+  
+    .logos img {
+      height: 2rem;
+    }
   }
 
   /**************************/
-  /* BELOW 370px  */
+  /* BELOW 370px Ejemplos de dispositivos: Teléfonos móviles de gama baja o antiguos con pantallas muy pequeñas. */
   /**************************/
   @media (max-width: 24em) {
     html {
@@ -458,6 +483,17 @@
     .cta-img-box {
       height: 32rem;
       grid-row: 1;
+    }
+    .logo {
+      height: 3rem;
+    }
+  
+    .logo-img-footer {
+      height: 3rem;
+    }
+  
+    .logos img {
+      height: 1.5rem;
     }
   }
 }
