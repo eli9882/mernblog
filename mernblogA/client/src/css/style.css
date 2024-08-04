@@ -17,6 +17,8 @@
   .logo {
     max-width: 10rem;
     max-height: 10rem;
+    position: relative;
+    left: -20px; 
   }
   
   .main-nav-list {
@@ -191,7 +193,8 @@
   }
   
   .logos img {
-    height: 5.2rem;
+    max-width: 6rem;
+    max-height: 6rem;
     max-width: 100%;
   }
   .btn--full:link,
@@ -698,8 +701,8 @@
   }
   
   .logo-img-footer {
-    height: 20rem;
-    max-width: 100%;
+    max-width: 21rem;
+    max-height: 21rem;
   }
   .footer-section {
     display: flex;
