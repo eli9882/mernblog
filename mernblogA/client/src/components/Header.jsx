@@ -35,6 +35,7 @@ const Header = () => {
 
   return (
     <header className="header" id="header">
+     
       <Link to="/" className="scroll-link" onClick={closeNavHandler}>
         <img className='logo' src={Logo} alt="Logo" />
       </Link>
