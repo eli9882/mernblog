@@ -281,7 +281,11 @@
     .hero .heading-primary {
       font-size: 3rem;
     }
-
+    .heading-hero {
+     
+      font-size: 4rem;
+     
+    }
     .TCU-information,
     .TCU_Judicial-information {
       width: 33%;
@@ -414,7 +418,11 @@
     .hero .heading-primary {
       font-size: 2.4rem;
     }
-
+    .heading-hero {
+     
+      font-size: 3rem;
+     
+    }
     .btn--outline span {
       display: none;
     }
