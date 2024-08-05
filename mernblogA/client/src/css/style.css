@@ -190,7 +190,7 @@
   .logos {
     display: flex;
     justify-content: space-around;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     gap: 1rem;
   }
   
