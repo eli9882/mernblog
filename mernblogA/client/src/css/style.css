@@ -271,15 +271,16 @@
   
   .cta {
     display: grid;
-    grid-template-columns: 1.3fr 1fr;
+    /* 2/3 = 66.6% + 1/3 = 33.3% */
+    grid-template-columns: 1.6fr 1.4fr;
+    /* background-color: #e67e22; */
     box-shadow: 0 2.4rem 4.8rem rgba(0, 0, 0, 0.15);
     border-radius: 11px;
+  
     background-image: linear-gradient(to right bottom, #d3e8fa, #d3e8fa);
     overflow: hidden;
   }
-  .cta-form div {
-    margin-bottom: 1.6rem; /* Espaciado entre campos */
-  }
+ 
   .cta-text-box {
     padding: 4.8rem 6.4rem 6.4rem 6.4rem;
     color: #333;
@@ -293,27 +294,25 @@
   .cta-text {
     font-size: 1.8rem;
     line-height: 1.8;
-    margin-bottom: 2rem;
+    margin-bottom: 4.8rem;
   }
   
   .cta-img-box {
-    position: relative;
-    overflow: hidden;
-    height: 100%; 
-    width: 100%; 
-}
+    background-image: linear-gradient(
+        to right bottom,
+        hsla(208, 80%, 52%, 0.2),
+        hsla(208, 80%, 90%, 0.1)
+      ),
+      url("../Recursos/EstudiantesN.jpg");
+    background-size: cover;
+    background-position: center;
+  }
 
-.cta-img {
-    height: 100%; 
-    width: 135%;
-    object-fit: cover; 
-    object-position: center; 
-}
-
-  
   .cta-form {
     display: grid;
-  grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 3.2rem;
+    row-gap: 2.4rem;
   }
   
   .cta-form label {
@@ -352,15 +351,21 @@
   
   /* Estilo del botón */
   .btn--form {
-    padding: 1rem 2rem; /* Tamaño basado en el contenido del texto */
+    display: block;
+    width: 100%;
+    max-width: 300px; /* Establece un ancho máximo */
+    padding: 1.2rem 2.4rem;
+    margin: 1.2rem auto 0 auto; /* Centra el botón horizontalmente */
+    text-align: center;
+   
     font-size: 1.8rem; /* Asegura que el tamaño del texto se mantenga */
     border: none;
     border-radius: 9px;
     background-color: #fff;
     color: #555;
     cursor: pointer;
-    text-align:center;
-    display: inline-block; /* Asegura que el botón se ajuste al tamaño del texto */
+   
+  
   }
   
   .btn--form:hover,
@@ -506,10 +511,22 @@
 
 .post-detail__thumbnail {
   margin: 2rem 0;
-  height: fit-content;
-  max-height: 40rem;
+  height: auto; 
+  max-height: 40rem; 
   overflow: hidden;
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
 }
+
+.post-detail__thumbnail img {
+  width: 100%;
+  height: auto; 
+  max-height: 90%; 
+  object-fit: cover; 
+}
+
+
 
 .post-detail__container p {
   margin-bottom: 0.7rem;
@@ -517,21 +534,46 @@
   text-align: justify; 
   font-size: 1.2rem;
 }
-
+.btn--form-edit{
+  display: block;
+  width: 100%;
+  max-width: 300px; /* Establece un ancho máximo */
+  padding: 1.2rem 2.4rem;
+  margin: 1.2rem auto 0 auto; /* Centra el botón horizontalmente */
+  text-align: center;
+ 
+  font-size: 1.8rem; /* Asegura que el tamaño del texto se mantenga */
+  border: none;
+  border-radius: 9px;
+  background-color: #cccccc3d;
+  color: #555;
+  cursor: pointer;
+}
+.btn--form-edit:hover,
+.btn--form-edit:active {
+  background-color: #f1f1ff;
+  box-shadow: inset 0 0 0 3px #fff;
+}
   /****************************/
   /*REGISTER  && GENERAL FORM*/
   /****************************/
 .register, .login, .create-post {
-  width: 50%;
-  /* -12 because navbar height plus footer top margin */
-  height: calc(100vh - 12rem);
+  width: 100%;
+  max-width: 500px;
   margin-inline: auto;
-  display: grid;
-  place-items: center;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 12rem);
 }
-
+.create-post{
+  max-width: 1000px;
+}
 .register h2, .login h2, .create-post h2 {
   margin-bottom: 2rem;
+  text-align: center;
 }
 
 .register small, .login small {
@@ -544,15 +586,44 @@
 }
 
 .cta-login{
-  grid-template-columns: 1.5fr 1fr;
-  box-shadow: 0 2.4rem 4.8rem rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 02.4rem4.8remrgba(0, 0, 0, 0.15);
   border-radius: 11px;
   background-image: linear-gradient(to right bottom, #d3e8fa, #d3e8fa);
-  overflow: hidden;
+  padding: 2rem;
+  width: 100%;
+  max-width: 400px; /* Ancho máximo */
 }
 /* change the background of quill editor */
 .ql-editor {
   background: #fff;
+}
+
+.btn--formcpost{
+  display: block;
+  width: 100%;
+  max-width: 300px; /* Establece un ancho máximo */
+  padding: 1.2rem 2.4rem;
+  margin: 1.2rem auto 0 auto; /* Centra el botón horizontalmente */
+  text-align: center;
+ 
+  font-size: 1.8rem; /* Asegura que el tamaño del texto se mantenga */
+  border: none;
+  border-radius: 9px;
+  background-color: #cccccc3d;
+  color: #555;
+  cursor: pointer;
+ 
+
+}
+
+.btn--formcpost:hover,
+.btn--formcpost:active {
+  background-color: #f1f1ff;
+  box-shadow: inset 0 0 0 3px #fff;
 }
 
 
@@ -666,6 +737,9 @@
 
 .author__info p {
   margin-top: 1rem;
+}
+.postUser{
+  margin: 20px;
 }
 
  /****************************/

@@ -12,6 +12,9 @@
     padding: 0 auto;
   }
   
+  .post-detail__thumbnail {
+    max-height: 70rem; 
+  }
 }
 
 /**************************/
@@ -25,6 +28,12 @@
     /* Percentage of user's browser font-size setting */
     font-size: 56.25%;
   }
+  .grid {
+    column-gap: 4.8rem;
+    row-gap: 6.4rem;
+  }
+ 
+
  
 }
 
@@ -60,11 +69,21 @@
   }
 
   .cta {
+    /* 3/5 = 60% + 2/5 = 40% */
     grid-template-columns: 3fr 2fr;
   }
 
   .cta-form {
     grid-template-columns: 1fr;
+  }
+
+  .btn--form {
+    max-width: 200px; 
+    padding: 1rem 2rem;
+  }
+  .btn--formcpost {
+    max-width: 200px; 
+    padding: 1rem 2rem;
   }
 
   /* MOBILE NAVIGATION */
@@ -161,6 +180,11 @@
   .footer-email-address {
     grid-row: -4 / -1;
     justify-self: center;
+  }
+  .register,
+  .login,
+  .create-post {
+    width: 100%;
   }
 }
 
@@ -261,6 +285,34 @@
     font-size: 1.8rem;
   }
 
+  .cta {
+    grid-template-columns: 1fr;
+  }
+
+  .cta-text-box {
+    padding: 3.2rem;
+  }
+
+  .cta-img-box {
+    height: 32rem;
+    grid-row: 1;
+  }
+  .btn--form {
+    max-width: 180px;
+    padding: 0.9rem 1.8rem;
+  }
+
+  .btn--formcpost {
+    max-width: 180px;
+    padding: 0.9rem 1.8rem;
+  }
+
+  .register,
+  .login,
+  .create-post {
+    width: 100%;
+  }
+
   /**************************/
   /* BELOW 550px  Ejemplos de dispositivos: iPhone 4/4S, algunos teléfonos Android antiguos y compactos.*/
   /**************************/
@@ -343,10 +395,16 @@
       padding: 0.4rem 1.2rem;
       
     }
-    .btn--form{
-      width: 50%;
-      margin-left: 68px;
+    .btn--form {
+      max-width: 150px; 
+      padding: 0.8rem 1.6rem;
     }
+
+    .btn--formcpost {
+      max-width: 150px; 
+      padding: 0.8rem 1.6rem;
+    }
+
     .section-hero {
       height: 65rem;
 
@@ -398,6 +456,13 @@
       height: 32rem;
       grid-row: 1;
     }
+    
+    .register,
+    .login,
+    .create-post {
+      width: 100%;
+    }
+
    
   }
 
@@ -427,11 +492,15 @@
       content: "Contactar";
       padding: 1.6rem 3.2rem;
     }
-    .btn--form{
-      padding: 1.6rem 5.2rem;
-      margin-left: 107px;
+    .btn--form {
+      max-width: 120px; 
+      padding: 0.6rem1.2rem;
     }
 
+    .btn--formcpost {
+      max-width: 120px; 
+      padding: 0.6rem1.2rem;
+    }
     .hero {
       gap: 0rem;
     }
@@ -461,6 +530,11 @@
       height: 32rem;
       grid-row: 1;
     }
-    
+    .register,
+    .login,
+    .create-post {
+      width: 100%;
+    }
+
   }
 }

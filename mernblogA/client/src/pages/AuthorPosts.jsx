@@ -31,6 +31,7 @@ const AuthorPosts = () => {
 
     return (
         <section className="user__posts">
+            <div className='postUser'>
             {posts.length ? (
                 <div className="container posts__container">
                     {posts.map(({ _id: id, thumbnail, category, title, description, creator, createdAt }) => (
@@ -49,6 +50,7 @@ const AuthorPosts = () => {
             ) : (
                 <h2 className='center'>No posts found for this user</h2>
             )}
+            </div>
         </section>
     );
 };

@@ -74,9 +74,9 @@ const CreatePost = () => {
                 {error && <p className="form__error-message">{error}</p>}
                 <form onSubmit={createPost} className='form create-post__form' encType="multipart/form-data">
                     <input type="text" placeholder='Title' value={title} onChange={e => setTitle(e.target.value)} autoFocus />
-                    <ReactQuill modules={modules} formats={formats} value={description} onChange={setDescription}></ReactQuill>
+                    <ReactQuill modules={modules} formats={formats} value={description} onChange={setDescription} className="react-quill-editor"></ReactQuill>
                     <input type="file" onChange={e => setThumbnail(e.target.files[0])} accept="png, jpg, jpeg" />
-                    <button type="submit" className='btn btn--form' style={{ width: '200px', maxWidth: '100%' }} >Create</button>  
+                    <button type="submit" className='btn btn--formcpost' style={{ width: '200px', maxWidth: '100%' }} >Create</button>  
                 </form>
                 
               

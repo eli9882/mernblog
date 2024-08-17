@@ -92,7 +92,7 @@ const EditPost = () => {
                     <input type="text" placeholder='Title' value={title} onChange={e => setTitle(e.target.value)} />
                     <ReactQuill modules={modules} formats={formats} value={description} onChange={setDescription}></ReactQuill>
                     <input type="file" onChange={e => setThumbnail(e.target.files[0])} accept="png, jpg, jpeg" />
-                    <button type="submit" className='btn btn--form' style={{ width: '200px', maxWidth: '100%' }}>Update</button>
+                    <button type="submit" className='btn btn--form-edit' style={{ width: '200px', maxWidth: '100%' }}>Update</button>
                 </form>
             </div>
         </section>

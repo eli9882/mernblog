@@ -40,7 +40,7 @@ const Login = () => {
             <div className="container">
             <div className="cta-login">
             <div className="cta-text-box">
-            <h2 className="heading-secondary centertitle">Sign In</h2>
+            <h2 className="heading-secondary centertitle">Iniciar sesión</h2>
                 <form onSubmit={loginUser} className='form login__form cta-form'>
                     {error && <p className="form__error-message">{error}</p>}
                     <input type="email" placeholder='Email' name='email' value={userData.email} onChange={changeHandler} autoFocus />
