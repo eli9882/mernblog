@@ -5,11 +5,12 @@ import { AiOutlineClose } from "react-icons/ai";
 import Logo from '../Recursos/Logos/Logo.png';
 import { UserContext } from '../context/userContext';
 
-const Header = () => {
+const Header = ({ showMenu }) => {
   const { currentUser } = useContext(UserContext);
   const [isNavShowing, setIsNavShowing] = useState(window.innerWidth > 900);
   const location = useLocation();
   const isLoginPage = location.pathname === '/login';
+  const isPostPage = location.pathname.startsWith('/posts/');
 
   useEffect(() => {
     const handleResize = () => {
@@ -35,11 +36,10 @@ const Header = () => {
 
   return (
     <header className="header" id="header">
-     
       <Link to="/" className="scroll-link" onClick={closeNavHandler}>
         <img className='logo' src={Logo} alt="Logo" />
       </Link>
-      {!isLoginPage && (
+      {showMenu && !isLoginPage && !isPostPage && (
         <nav className={`main-nav ${isNavShowing ? 'nav-open' : ''}`}>
           {!currentUser?.id && (
             <ul className='main-nav-list'>
@@ -59,7 +59,7 @@ const Header = () => {
                 <a className="main-nav-link scroll-link" href="#footer" onClick={closeNavHandler}>Información de contacto</a>
               </li>
               <li>
-                <Link className="main-nav-link scroll-link" to={'/login'} onClick={closeNavHandler}>Login</Link>
+                <Link className="main-nav-link scroll-link invisible-link" to={'/login'} onClick={closeNavHandler}>Login</Link>
               </li>
             </ul>
           )}
@@ -78,9 +78,11 @@ const Header = () => {
           )}
         </nav>
       )}
-      <button className="nav__toggle-btn" onClick={() => setIsNavShowing(!isNavShowing)}>
-        {isNavShowing ? <AiOutlineClose /> : <FaBars />}
-      </button>
+      {showMenu && window.innerWidth < 900 && (
+        <button className="nav__toggle-btn" onClick={() => setIsNavShowing(!isNavShowing)}>
+          {isNavShowing ? <AiOutlineClose /> : <FaBars />}
+        </button>
+      )}
     </header>
   );
 };

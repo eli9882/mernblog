@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import axios from "axios"
 
 import { UserContext } from '../context/userContext'
@@ -48,7 +48,7 @@ const Login = () => {
                     <button type="submit" className='btn general btn--form'>Login</button>
                   
                 </form>
-                <small>Don't have an account? <Link to="/register">sign up</Link></small>
+              
             </div>
             </div>
             </div>

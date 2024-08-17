@@ -7,6 +7,7 @@ import Manualidades from '../Recursos/Manualidades.jpg';
 import Conapam from '../Recursos/Logos/CONAPAM.png';
 import Fodesaf from '../Recursos/Logos/FODESAF.png';
 import Jps from '../Recursos/Logos/JPS.jpeg';
+import Logo from '../Recursos/Estudiantes.jpeg';
 import emailjs from '@emailjs/browser';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -252,12 +253,17 @@ const Home = () => {
               <option value="Otros">Otros</option>
             </select>
           </div>
+          
+          <div className="btn-container">
           <button type="submit" value="Send" className="btn btn--form">Enviar</button>
-      
+          </div>
          
         </form>
        </div>
-      <div className="cta-img-box" role="img" aria-label="Woman enjoying food"></div>
+       <div className="cta-img-box">
+          <img src={Logo} alt="Descripción de la imagen" className="cta-img" />
+      </div>
+
     </div>
   </div>
 </section>

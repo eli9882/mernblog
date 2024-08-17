@@ -8,6 +8,7 @@ const Layout = () => {
   const [isLoading, setIsLoading] = useState(true);
   const location = useLocation();
   const isLoginPage = location.pathname === '/login';
+  const isPostPage = location.pathname.startsWith('/posts/');
 
   useEffect(() => {
     // Simulando una carga inicial
@@ -20,7 +21,7 @@ const Layout = () => {
 
   return (
     <>
-      <Header showMenu={!isLoginPage} />
+      <Header showMenu={!isLoginPage && !isPostPage} />
       {isLoading ? <Loader /> : <Outlet />}
       <Footer />
     </>

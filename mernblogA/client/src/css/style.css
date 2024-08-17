@@ -77,6 +77,13 @@
     display: none;
   }
 
+  .invisible-link {
+    opacity: 0;  
+    pointer-events: auto; 
+    position: absolute;  
+    
+  }
+  
   
   /****************************/
   /*Hero*/
@@ -264,13 +271,15 @@
   
   .cta {
     display: grid;
-    grid-template-columns: 1.5fr 1fr;
+    grid-template-columns: 1.3fr 1fr;
     box-shadow: 0 2.4rem 4.8rem rgba(0, 0, 0, 0.15);
     border-radius: 11px;
     background-image: linear-gradient(to right bottom, #d3e8fa, #d3e8fa);
     overflow: hidden;
   }
-  
+  .cta-form div {
+    margin-bottom: 1.6rem; /* Espaciado entre campos */
+  }
   .cta-text-box {
     padding: 4.8rem 6.4rem 6.4rem 6.4rem;
     color: #333;
@@ -290,24 +299,21 @@
   .cta-img-box {
     position: relative;
     overflow: hidden;
-    background-image: linear-gradient(
-        to right bottom,
-        hsla(208, 80%, 52%, 0.2),
-        hsla(208, 80%, 90%, 0.1)
-      ),
-      url("../Recursos/prueba2.jpeg");
-    background-size: cover;
-    background-position: center;
-  }
-  .cta-img-box.loading {
-    background-image: none !important;
-  }
+    height: 100%; 
+    width: 100%; 
+}
+
+.cta-img {
+    height: 100%; 
+    width: 135%;
+    object-fit: cover; 
+    object-position: center; 
+}
+
   
   .cta-form {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    column-gap: 3.2rem;
-    row-gap: 2.4rem;
+  grid-template-columns: 1fr;
   }
   
   .cta-form label {
@@ -338,21 +344,31 @@
     outline: none;
     box-shadow: 0 0 0 0.8rem rgba(253, 242, 233, 0.5);
   }
-  .btn--form{
-   margin-top: 20px;
-   }         
+  .btn-container {
+    display: flex;
+    justify-content: center; /* Centra horizontalmente el contenido del contenedor */
+    margin-top: 2rem;   
+  }
   
-.btn--form:link,
-.btn--form:visited {
-  background-color: #fff;
-  color: #555;
-}
-
-.btn--form:hover,
-.btn--form:active {
-  background-color: #f1f1ff;
-  box-shadow: inset 0 0 0 3px #fff;
-}
+  /* Estilo del botón */
+  .btn--form {
+    padding: 1rem 2rem; /* Tamaño basado en el contenido del texto */
+    font-size: 1.8rem; /* Asegura que el tamaño del texto se mantenga */
+    border: none;
+    border-radius: 9px;
+    background-color: #fff;
+    color: #555;
+    cursor: pointer;
+    text-align:center;
+    display: inline-block; /* Asegura que el botón se ajuste al tamaño del texto */
+  }
+  
+  .btn--form:hover,
+  .btn--form:active {
+    background-color: #f1f1ff;
+    box-shadow: inset 0 0 0 3px #fff;
+  }
+  
 
 
 /*======================== HOME ========================*/
@@ -469,7 +485,7 @@
   /*POST DETAILS*/
   /****************************/
 .post-detail {
-  width: 50%;
+  width: 100%;
   background: #fff;
   margin-inline: auto;
   padding: 2rem 0;
