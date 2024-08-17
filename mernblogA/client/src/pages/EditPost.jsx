@@ -85,15 +85,17 @@ const EditPost = () => {
 
     return (
         <section className="create-post">
+            <div className='containercrearpost'>
             <div className="container create-post__container">
-                <h2 className="section-heading spost">Edit Post</h2>
+                <h2 className="section-heading spost">Editar Publicación</h2>
                 {error && <p className="form__error-message">{error}</p>}
                 <form onSubmit={editPost} className='form create-post__form' encType="multipart/form-data">
                     <input type="text" placeholder='Title' value={title} onChange={e => setTitle(e.target.value)} />
                     <ReactQuill modules={modules} formats={formats} value={description} onChange={setDescription}></ReactQuill>
                     <input type="file" onChange={e => setThumbnail(e.target.files[0])} accept="png, jpg, jpeg" />
-                    <button type="submit" className='btn btn--form-edit' style={{ width: '200px', maxWidth: '100%' }}>Update</button>
+                    <button type="submit" className='btn btn--form-edit' style={{ width: '200px', maxWidth: '100%' }}>Actualizar</button>
                 </form>
+            </div>
             </div>
         </section>
     );

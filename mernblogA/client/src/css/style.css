@@ -534,26 +534,7 @@
   text-align: justify; 
   font-size: 1.2rem;
 }
-.btn--form-edit{
-  display: block;
-  width: 100%;
-  max-width: 300px; /* Establece un ancho máximo */
-  padding: 1.2rem 2.4rem;
-  margin: 1.2rem auto 0 auto; /* Centra el botón horizontalmente */
-  text-align: center;
- 
-  font-size: 1.8rem; /* Asegura que el tamaño del texto se mantenga */
-  border: none;
-  border-radius: 9px;
-  background-color: #cccccc3d;
-  color: #555;
-  cursor: pointer;
-}
-.btn--form-edit:hover,
-.btn--form-edit:active {
-  background-color: #f1f1ff;
-  box-shadow: inset 0 0 0 3px #fff;
-}
+
   /****************************/
   /*REGISTER  && GENERAL FORM*/
   /****************************/
@@ -566,10 +547,12 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+ 
   height: calc(100vh - 12rem);
 }
 .create-post{
   max-width: 1000px;
+ 
 }
 .register h2, .login h2, .create-post h2 {
   margin-bottom: 2rem;
@@ -627,7 +610,29 @@
 }
 
 
+.btn--form-edit{
+  display: block;
+  width: 100%;
+  max-width: 300px; /* Establece un ancho máximo */
+  padding: 1.2rem 2.4rem;
+  margin: 1.2rem auto 0 auto; /* Centra el botón horizontalmente */
+  text-align: center;
+ 
+  font-size: 1.8rem; /* Asegura que el tamaño del texto se mantenga */
+  border: none;
+  border-radius: 9px;
+  background-color: #cccccc3d;
+  color: #555;
+  cursor: pointer;
+ 
 
+}
+
+.btn--form-edit:hover,
+.btn--form-edit:active {
+  background-color: #f1f1ff;
+  box-shadow: inset 0 0 0 3px #fff;
+}
   /****************************/
   /*USER PROFILE*/
   /****************************/
@@ -643,12 +648,15 @@
 }
 
 .cta-profile{
-  grid-template-columns: 1.5fr 1fr;
+  display: grid;
+  grid-template-columns: 1fr;
   box-shadow: 0 2.4rem 4.8rem rgba(0, 0, 0, 0.15);
   border-radius: 11px;
   background-image: linear-gradient(to right bottom, #d3e8fa, #d3e8fa);
   overflow: hidden;
-  margin: 100px;
+  margin: 100px auto;
+ 
+  max-width: 700px;
 }
 .avatar__wrapper {
   width: 15rem;

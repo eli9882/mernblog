@@ -45,7 +45,7 @@ const Login = () => {
                     {error && <p className="form__error-message">{error}</p>}
                     <input type="email" placeholder='Email' name='email' value={userData.email} onChange={changeHandler} autoFocus />
                     <input type="password" placeholder='Password' name='password' value={userData.password} onChange={changeHandler} />
-                    <button type="submit" className='btn general btn--form'>Login</button>
+                    <button type="submit" className='btn general btn--form'>Ingresar</button>
                   
                 </form>
               

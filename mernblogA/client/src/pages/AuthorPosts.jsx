@@ -48,7 +48,7 @@ const AuthorPosts = () => {
                     ))}
                 </div>
             ) : (
-                <h2 className='center'>No posts found for this user</h2>
+                <h2 className='center'>No se han encontrado publicaciones para este usuario</h2>
             )}
             </div>
         </section>

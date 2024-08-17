@@ -69,15 +69,15 @@ const Dashboard = () => {
                                 <h3>{post.title}</h3>
                             </div>
                             <div className="dashboard__post-actions">
-                                <Link to={`/posts/${post._id}`} className='btn view sm'>View</Link>
-                                <Link to={`/posts/${post._id}/edit`} className='btn primary sm'>Edit</Link>
-                                <Link onClick={() => removePost(post._id)} className='btn danger sm'>Delete</Link>
+                                <Link to={`/posts/${post._id}`} className='btn view sm'>Ver</Link>
+                                <Link to={`/posts/${post._id}/edit`} className='btn primary sm'>Editar</Link>
+                                <Link onClick={() => removePost(post._id)} className='btn danger sm'>Eliminar</Link>
                             </div>
                         </article>
                     ))}
                 </div>
             ) : (
-                <h2 className='center'>You have no posts yet.</h2>
+                <h2 className='center'>No tienes ningun Publicación todavia.</h2>
             )}
         </section>
     );

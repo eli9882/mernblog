@@ -5,8 +5,8 @@ const ErrorPage = () => {
   return (
     <section className="error-page">
       <div className="center">
-        <Link to='/' className='btn btn--form'>Go Back Home</Link>
-        <h2>Page Not Found</h2>
+        <Link to='/' className='btn btn--form'>Regresar al inicio </Link>
+        <h2>Pagina no encontrada</h2>
       </div>
     </section>
   )

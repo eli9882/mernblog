@@ -94,7 +94,7 @@ const UserProfile = () => {
             <div className="cta-profile">
             <div className="cta-text-box">
             <div className="container profile__container">
-                <Link to={`/myposts/${currentUser?.id}`} className='btn'>My Posts</Link>
+                <Link to={`/myposts/${currentUser?.id}`} className='btn'>Mis Publicaciones</Link>
 
                 <div className="profile__details">
                     <div className="avatar__wrapper">
@@ -115,12 +115,12 @@ const UserProfile = () => {
                
                     <form className='form profile__form cta-form' onSubmit={updateUserDetail}>
                         {error && <p className='form__error-message'>{error}</p>}
-                        <input type="text" placeholder='Full Name' value={name} onChange={e => setName(e.target.value)} />
-                        <input type="email" placeholder='Email' value={email} onChange={e => setEmail(e.target.value)} />
-                        <input type="password" placeholder='Current Password' value={currentPassword} onChange={e => setCurrentPassword(e.target.value)} />
-                        <input type="password" placeholder='New Password' value={newPassword} onChange={e => setNewPassword(e.target.value)} />
-                        <input type="password" placeholder='Confirm New Password' value={confirmNewPassword} onChange={e => setConfirmNewPassword(e.target.value)} />
-                        <button type="submit" className=' btn profile btn--form'>Update my details</button>
+                        <input type="text" placeholder='Nombre completo' value={name} onChange={e => setName(e.target.value)} />
+                        <input type="email" placeholder='correo' value={email} onChange={e => setEmail(e.target.value)} />
+                        <input type="password" placeholder='Contraseña actual' value={currentPassword} onChange={e => setCurrentPassword(e.target.value)} />
+                        <input type="password" placeholder='Nueva contraseña' value={newPassword} onChange={e => setNewPassword(e.target.value)} />
+                        <input type="password" placeholder='Confirmar nueva contraseña' value={confirmNewPassword} onChange={e => setConfirmNewPassword(e.target.value)} />
+                        <button type="submit" className=' btn profile btn--form'>Actualizar</button>
                     </form>
                 </div>
             </div>

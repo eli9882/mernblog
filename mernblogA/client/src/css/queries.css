@@ -15,6 +15,10 @@
   .post-detail__thumbnail {
     max-height: 70rem; 
   }
+  .create-post{
+    margin-top: 6rem; 
+    margin-bottom: 8rem; 
+  }
 }
 
 /**************************/
@@ -50,6 +54,8 @@
   .footer .grid {
     column-gap: 3.2rem;
   }
+
+ 
 }
 
 /**************************/

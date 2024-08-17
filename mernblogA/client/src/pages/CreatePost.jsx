@@ -70,13 +70,13 @@ const CreatePost = () => {
     return (
         <section className="create-post">
             <div className="container">
-                <h2 className="section-heading spost">Create Post</h2>
+                <h2 className="section-heading spost">Crear Publicación</h2>
                 {error && <p className="form__error-message">{error}</p>}
                 <form onSubmit={createPost} className='form create-post__form' encType="multipart/form-data">
                     <input type="text" placeholder='Title' value={title} onChange={e => setTitle(e.target.value)} autoFocus />
                     <ReactQuill modules={modules} formats={formats} value={description} onChange={setDescription} className="react-quill-editor"></ReactQuill>
                     <input type="file" onChange={e => setThumbnail(e.target.files[0])} accept="png, jpg, jpeg" />
-                    <button type="submit" className='btn btn--formcpost' style={{ width: '200px', maxWidth: '100%' }} >Create</button>  
+                    <button type="submit" className='btn btn--formcpost' style={{ width: '200px', maxWidth: '100%' }} >Crear</button>  
                 </form>
                 
               

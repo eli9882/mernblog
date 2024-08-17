@@ -69,10 +69,10 @@ const Header = ({ showMenu }) => {
                 <Link className="main-nav-link scroll-link" to={`/profile/${currentUser?.id}`} onClick={closeNavHandler}>{currentUser?.name}</Link>
               </li>
               <li>
-                <Link className="main-nav-link scroll-link" to={'/create'} onClick={closeNavHandler}>Create Post</Link>
+                <Link className="main-nav-link scroll-link" to={'/create'} onClick={closeNavHandler}>Crear Publicación </Link>
               </li>
               <li>
-                <Link className="main-nav-link scroll-link" to={'/logout'} onClick={closeNavHandler}>Logout</Link>
+                <Link className="main-nav-link scroll-link" to={'/logout'} onClick={closeNavHandler}>Salir</Link>
               </li>
             </ul>
           )}
