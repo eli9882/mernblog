@@ -132,7 +132,7 @@ const changeAvatar = async (req, res, next) => {
         const oldAvatarPath = path.join(__dirname, '..', 'uploads', user.avatar);
         fs.unlink(oldAvatarPath, (err) => {
           if (err) {
-            console.error('Error al borrar avatar antiguo:', err);
+            console.error('Error deleting old avatar:', err);
           }
         });
       }
@@ -140,7 +140,7 @@ const changeAvatar = async (req, res, next) => {
       const { avatar } = req.files;
       // Check file size
       if (avatar.size > 500000) {
-        return next(new HttpError("Imagen de perfil demasiado grande. El tamaño del archivo debe ser inferior a 500kb", 422));
+        return next(new HttpError("Profile picture too big. File size should be under 500kb", 422));
       }
   
       // Generate new filename
@@ -153,20 +153,20 @@ const changeAvatar = async (req, res, next) => {
       // Move new avatar
       avatar.mv(uploadPath, async (err) => {
         if (err) {
-          return next(new HttpError("Error al mover el nuevo archivo de avatar.", 500));
+          return next(new HttpError("Error moving the new avatar file", 500));
         }
   
         // Update user avatar in database
         const updatedUser = await User.findByIdAndUpdate(req.user.id, { avatar: newFilename }, { new: true });
         if (!updatedUser) {
-          return next(new HttpError("Avatar no se podía cambiar..", 500));
+          return next(new HttpError("Avatar couldn't be changed.", 500));
         }
   
         res.status(200).json(updatedUser);
       });
   
     } catch (error) {
-      return next(new HttpError("Algo ha ido mal, por favor inténtelo de nuevo.", 500));
+      return next(new HttpError("Something went wrong, please try again.", 500));
     }
   }
   
@@ -183,30 +183,30 @@ const editUser = async (req, res, next) => {
     try {
         const {name, email, currentPassword, newPassword, confirmNewPassword} = req.body;
         if(!name || !email || !currentPassword || !newPassword || !confirmNewPassword) {
-            return next(new HttpError("Rellene todos los campos.", 422))
+            return next(new HttpError("Fill in all fields.", 422))
         }
 
         // get user from database
         const user = await User.findById(req.user.id)
         if(!user) {
-            return next(new HttpError("Usuario no encontrado.", 403))
+            return next(new HttpError("User not found.", 403))
         }
 
         // make sure new email doesn't already exist
         const emailExist = await User.findOne({email})
         if(emailExist && (emailExist._id != req.user.id)) {
-            return next(new HttpError("El correo electrónico ya existe.", 422))
+            return next(new HttpError("Email already exist.", 422))
         }
 
         // compare current password to db password
         const validateUserPassword = await bcrypt.compare(currentPassword, user.password);
         if(!validateUserPassword) {
-            return next(new HttpError("Contraseña actual no válida."))
+            return next(new HttpError("Invalid current password."))
         }
 
         // compare new passwords
         if(newPassword !== confirmNewPassword) {
-            return next(new HttpError("Las nuevas contraseñas no coinciden.", 422))
+            return next(new HttpError("New passwords do not match.", 422))
         }
 
         // hash new password
