@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+
 import axios from 'axios';
 import ReactTimeAgo from 'react-time-ago';
 import TimeAgo from 'javascript-time-ago';
@@ -27,7 +27,7 @@ const PostAuthor = ({ authorID, createdAt }) => {
   }, [authorID]);
 
   return (
-    <Link to={`/posts/users/${authorID}`} className="post__author">
+    <div className="post__author">
       <div className="post__author-avatar">
         <img src={`${process.env.REACT_APP_ASSET_URL}/uploads/${author?.avatar}`} alt="" />
       </div>
@@ -35,7 +35,7 @@ const PostAuthor = ({ authorID, createdAt }) => {
         <h5>By: {author?.name}</h5>
         <small><ReactTimeAgo date={new Date(createdAt)} locale="en-US" /></small>
       </div>
-    </Link>
+      </div>
   );
 };
 

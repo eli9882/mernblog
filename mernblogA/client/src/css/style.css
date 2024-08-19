@@ -485,6 +485,12 @@
   width: 4.5rem;
   height: 4.5rem;
 }
+.center-text {
+  display: flex;
+  justify-content: center; 
+  align-items: center;    
+  height: 100%;            
+}
 
   /****************************/
   /*POST DETAILS*/

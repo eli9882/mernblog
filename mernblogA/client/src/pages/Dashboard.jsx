@@ -1,56 +1,47 @@
-import React, {useState, useEffect, useContext} from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import Loader from '../components/Loader';
 import { UserContext } from '../context/userContext';
 
 const Dashboard = () => {
-    const {id} = useParams();
+    const { id } = useParams();
     const [posts, setPosts] = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
-
     const navigate = useNavigate();
-
-    const {currentUser} = useContext(UserContext);
+    const { currentUser } = useContext(UserContext);
     const token = currentUser?.token;
 
-    // redirect to login page for any user to lands on this page without token
+    // Redirect to login page if no token is present
     useEffect(() => {
         if (!token) {
             navigate('/login');
         }
-    }, [navigate, token]); // Añadir navigate y token como dependencias
+    }, [navigate, token]);
 
+    // Fetch posts
     useEffect(() => {
         const fetchPosts = async () => {
-            setIsLoading(true);
             try {
                 const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/posts/users/${id}`, {
-                    withCredentials: true, 
+                    withCredentials: true,
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 setPosts(response.data);
             } catch (error) {
                 console.log(error);
             }
-            setIsLoading(false);
         };
 
         fetchPosts();
-    }, [id, token]); // Añadir token como dependencia
+    }, [id, token]);
 
-    // show loading spinner
-    if (isLoading) {
-        return <Loader />;
-    }
-
+    // Remove post
     const removePost = async (postId) => {
         try {
             await axios.delete(`${process.env.REACT_APP_BASE_URL}/posts/${postId}`, {
                 withCredentials: true,
                 headers: { Authorization: `Bearer ${token}` }
             });
-            navigate(0); // Recargar la página para reflejar los cambios
+            setPosts(posts.filter(post => post._id !== postId)); // Remove post from state
         } catch (error) {
             console.log(error);
         }
@@ -64,20 +55,20 @@ const Dashboard = () => {
                         <article key={post._id} className="dashboard__post">
                             <div className='dashboard__post-info'>
                                 <div className="dashboard__post-thumbnail">
-                                    <img src={`${process.env.REACT_APP_ASSET_URL}/uploads/${post.thumbnail}`} alt="" />
+                                    <img src={`${process.env.REACT_APP_ASSET_URL}/uploads/${post.thumbnail}`} alt={post.title} />
                                 </div>
                                 <h3>{post.title}</h3>
                             </div>
                             <div className="dashboard__post-actions">
                                 <Link to={`/posts/${post._id}`} className='btn view sm'>Ver</Link>
                                 <Link to={`/posts/${post._id}/edit`} className='btn primary sm'>Editar</Link>
-                                <Link onClick={() => removePost(post._id)} className='btn danger sm'>Eliminar</Link>
+                                <button onClick={() => removePost(post._id)} className='btn danger sm'>Eliminar</button>
                             </div>
                         </article>
                     ))}
                 </div>
             ) : (
-                <h2 className='center'>No tienes ningun Publicación todavia.</h2>
+                <h2 className='center'>No tienes ninguna publicación todavía.</h2>
             )}
         </section>
     );

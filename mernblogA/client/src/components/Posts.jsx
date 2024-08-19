@@ -9,12 +9,11 @@ import styled from 'styled-components';
 
 const Posts = () => {
   const [posts, setPosts] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true); // Inicialmente en true
   const arrowRef = useRef(null);
 
   useEffect(() => {
     const fetchPosts = async () => {
-      setIsLoading(true);
       try {
         const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/posts`);
         if (response?.data) {
@@ -26,7 +25,7 @@ const Posts = () => {
         console.log(error);
         setPosts([]);
       }
-      setIsLoading(false);
+      setIsLoading(false); // Cambia a false después de la carga de datos
     };
 
     fetchPosts();
@@ -73,7 +72,7 @@ const Posts = () => {
       <section className="posts" id="blogs">
         <h2 className="section-heading spost">Blog</h2>
         {isLoading ? (
-          <p>Cargando publicaciones...</p> // Puedes poner un mensaje simple o dejar este espacio en blanco
+           <h2 className="center-text">Cargando..</h2>
         ) : posts.length ? (
           <>
             <Testimonials>
@@ -99,7 +98,7 @@ const Posts = () => {
             </Testimonials>
           </>
         ) : (
-          <h2 className="center">No se han encontrado publicaciones.</h2>
+          <h2 className="center-text">No se han encontrado publicaciones.</h2>
         )}
       </section>
     </Container>
