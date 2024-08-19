@@ -133,6 +133,8 @@ const changeAvatar = async (req, res, next) => {
         fs.unlink(oldAvatarPath, (err) => {
           if (err) {
             console.error('Error deleting old avatar:', err);
+          } else {
+            console.log(`Old avatar deleted: ${oldAvatarPath}`);
           }
         });
       }
@@ -156,6 +158,16 @@ const changeAvatar = async (req, res, next) => {
           return next(new HttpError("Error moving the new avatar file", 500));
         }
   
+        // Check if the file was saved successfully
+        fs.access(uploadPath, fs.constants.F_OK, (err) => {
+          if (err) {
+            console.error('File not found after moving:', uploadPath);
+            return next(new HttpError("Error confirming the new avatar file", 500));
+          } else {
+            console.log(`New avatar successfully saved: ${uploadPath}`);
+          }
+        });
+  
         // Update user avatar in database
         const updatedUser = await User.findByIdAndUpdate(req.user.id, { avatar: newFilename }, { new: true });
         if (!updatedUser) {
@@ -170,7 +182,6 @@ const changeAvatar = async (req, res, next) => {
     }
   }
   
-
 
 
 
