@@ -15,13 +15,13 @@ const createPost = async (req, res, next) => {
     try {
         let {title, description} = req.body;
         if(!title || !description || !req.files) {
-            return next(new HttpError("Fill in all fields and choose thumbnail.", 422))
+            return next(new HttpError("Rellene todos los campos y elija la imagen.", 422))
         }
         
         const {thumbnail} = req.files;
         // check file size
         if(thumbnail.size > 2000000) {
-            return next(new HttpError("Thumbnail too big. File size should be less than 2mb"))
+            return next(new HttpError("Imagen demasiado grande. El tamaño del archivo debe ser inferior a 2mb."))
         }
         
         let fileName;
@@ -34,7 +34,7 @@ const createPost = async (req, res, next) => {
             } else {
                 const newPost = await Post.create({title, description, thumbnail: newFilename, creator: req.user.id});
                 if(!newPost) {
-                    return next(new HttpError("Something went wrong.", 422))
+                    return next(new HttpError("Algo salió mal.", 422))
                 }
                 // Find user and increase posts count by 1
                 const currentUser = await User.findById(req.user.id)
@@ -75,7 +75,7 @@ const getPost = async (req, res, next) => {
         const postID = req.params.id;
         const post = await Post.findById(postID);
         if(!post) {
-            return next(new HttpError("Post not found.", 404))
+            return next(new HttpError("Publicación no encontrado.", 404))
         }
         res.status(200).json(post);
     } catch (error) {
@@ -127,7 +127,7 @@ const editPost = async (req, res, next) => {
         let {title, description} = req.body;
         // ReactQuill has a paragraph opening and closing tag with a break tag in between so there are 11 characters in there already. That's why 12 
         if(!title || description.length < 12) {
-            return next(new HttpError("Fill all fields", 422))
+            return next(new HttpError("Rellene todos los campos", 422))
         }
         
         // get old post from db
@@ -148,7 +148,7 @@ const editPost = async (req, res, next) => {
                 const {thumbnail} = req.files;
                 // check file size
                 if(thumbnail.size > 2000000) {
-                    return next(new HttpError("Thumbnail too big. Should be less than 2mb"))
+                    return next(new HttpError("Imagen demasiado grande. Debería pesar menos de 2mb"))
                 }
                 fileName = thumbnail.name;
                 let splittedFilename = fileName.split('.')
@@ -162,11 +162,11 @@ const editPost = async (req, res, next) => {
                 updatedPost = await Post.findByIdAndUpdate(postID, {title, description, thumbnail: newFilename}, {new: true})
             }
         } else {
-            return next(new HttpError("Couldn't update post.", 403))
+            return next(new HttpError("No se ha podido actualizar la publicación.", 403))
         }
 
         if(!updatedPost) {
-            return next(new HttpError("Couldn't update post", 400))
+            return next(new HttpError("No se ha podido actualizar la publicación.", 400))
         }
         res.json(updatedPost)
 
@@ -185,7 +185,7 @@ const editPost = async (req, res, next) => {
 const removePost = async (req, res, next) => {
     const postID = req.params.id;
     if(!postID) {
-        return next(new HttpError("Post unavailable"))
+        return next(new HttpError("Publicación no disponible"))
     }
     const post = await Post.findById(postID);
     const fileName = post?.thumbnail;
@@ -200,11 +200,11 @@ const removePost = async (req, res, next) => {
             const currentUser = await User.findById(req.user.id)
             const userPostCount = currentUser?.posts - 1;
             await User.findByIdAndUpdate(req.user.id, {posts: userPostCount})
-            res.json("Post deleted")
+            res.json("Publicación eliminada")
         }
         })
     } else {
-        return next(new HttpError("Couldn't delete post.", 403))
+        return next(new HttpError("No se puede eliminar la publicación.", 403))
     }
 }
 
