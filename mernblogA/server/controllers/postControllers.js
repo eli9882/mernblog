@@ -1,3 +1,4 @@
+/*require('dotenv').config(); 
 const Post = require('../models/postModel')
 const User = require('../models/userModel')
 const path = require('path')
@@ -5,13 +6,13 @@ const fs = require('fs')
 const { v4: uuid } = require("uuid")
 const HttpError = require('../models/errorModel')
 const { mongoose } = require('mongoose')
-
+const cloudinary = require('cloudinary').v2;*/
 
 
 //============================== CREATE NEW POST
 // POST : api/posts/
 // PROTECTED
-const createPost = async (req, res, next) => {
+/*const createPost = async (req, res, next) => {
     try {
         let {title, description} = req.body;
         if(!title || !description || !req.files) {
@@ -47,9 +48,75 @@ const createPost = async (req, res, next) => {
     } catch (error) {
         return next(new HttpError(error))
     }
-}
+}*/
+require('dotenv').config(); 
+const Post = require('../models/postModel'); 
+const User = require('../models/userModel');
+const fs = require('fs').promises;
+const { v4: uuid } = require("uuid");
+const HttpError = require('../models/errorModel');
+const cloudinary = require('cloudinary').v2;
+const path = require('path');
 
+// Configuración de Cloudinary
+cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET,
+});
 
+//============================== CREATE NEW POST
+const createPost = async (req, res, next) => {
+    try {
+        const { title, description } = req.body;
+
+        // Verificar que se haya subido un archivo
+        if (!req.files || !req.files.thumbnail) {
+            return next(new HttpError("Rellene todos los campos y elija la imagen.", 422));
+        }
+
+        const { thumbnail } = req.files;
+
+        // Verificar el tamaño del archivo
+        if (thumbnail.size > 2000000) {
+            return next(new HttpError("Imagen demasiado grande. El tamaño del archivo debe ser inferior a 2mb."));
+        }
+
+        // Subir la imagen a Cloudinary
+        try {
+            const result = await cloudinary.uploader.upload(thumbnail.tempFilePath, {
+                folder: "uploads",
+                public_id: uuid(),
+                resource_type: "image"
+            });
+
+            // Eliminar el archivo temporal después de subirlo a Cloudinary
+            await fs.unlink(thumbnail.tempFilePath);
+
+            const newPost = await Post.create({
+                title,
+                description,
+                thumbnail: result.secure_url, // Guardamos la URL segura de la imagen
+                creator: req.user.id,
+            });
+
+            if (!newPost) {
+                return next(new HttpError("Algo salió mal.", 422));
+            }
+
+            const currentUser = await User.findById(req.user.id);
+            currentUser.posts += 1;
+            await currentUser.save();
+
+            res.status(201).json(newPost);
+        } catch (err) {
+            console.error("Error al subir la imagen a Cloudinary:", err.message);
+            return next(new HttpError("Error al subir la imagen a Cloudinary.", 500));
+        }
+    } catch (error) {
+        return next(new HttpError(error.message, 500));
+    }
+};
 
 
 //============================== GET ALL POSTS
@@ -118,7 +185,7 @@ const getUserPosts = async (req, res, next) => {
 //============================== EDIT POST
 // PATCH : api/posts/:id
 // PROTECTED
-const editPost = async (req, res, next) => {
+/*const editPost = async (req, res, next) => {
     let fileName;
     let newFilename;
     let updatedPost
@@ -173,8 +240,134 @@ const editPost = async (req, res, next) => {
     } catch (error) {
         return next(new HttpError(error))
     }
-}
+}*/
 
+//============================== EDIT POST
+// PATCH : api/posts/:id
+// PROTECTED     edit 2
+/*const editPost = async (req, res, next) => {
+    let updatedPost;
+    try {
+        const postID = req.params.id;
+        const { title, description } = req.body;
+
+        if (!title || description.length < 12) {
+            return next(new HttpError("Rellene todos los campos", 422));
+        }
+
+        const oldPost = await Post.findById(postID);
+        if (!oldPost) {
+            return next(new HttpError("Publicación no encontrada", 404));
+        }
+
+        // Verificar si el usuario es el creador
+        if (req.user.id !== oldPost.creator.toString()) {
+            return next(new HttpError("No autorizado para editar esta publicación.", 403));
+        }
+
+        // Si no se sube un nuevo archivo, solo se actualizan los campos de texto
+        if (!req.files || !req.files.thumbnail) {
+            updatedPost = await Post.findByIdAndUpdate(postID, { title, description }, { new: true });
+        } else {
+            const { thumbnail } = req.files;
+
+            // Verificar el tamaño del archivo
+            if (thumbnail.size > 2000000) {
+                return next(new HttpError("Imagen demasiado grande. Debería pesar menos de 2mb"));
+            }
+
+            // Subir la nueva imagen a Cloudinary
+            const result = await cloudinary.uploader.upload(thumbnail.tempFilePath, {
+                folder: "uploads",
+                public_id: uuid(),
+                resource_type: "image",
+            });
+
+            // Eliminar el archivo temporal
+            await fs.unlink(thumbnail.tempFilePath);
+
+            // Actualizar la publicación con el nuevo thumbnail
+            updatedPost = await Post.findByIdAndUpdate(
+                postID,
+                { title, description, thumbnail: result.secure_url },
+                { new: true }
+            );
+        }
+
+        if (!updatedPost) {
+            return next(new HttpError("No se ha podido actualizar la publicación.", 400));
+        }
+
+        res.json(updatedPost);
+    } catch (error) {
+        return next(new HttpError(error.message, 500));
+    }
+};*/
+
+const editPost = async (req, res, next) => {
+    let updatedPost;
+    try {
+        const postID = req.params.id;
+        const { title, description } = req.body;
+
+        if (!title || description.length < 12) {
+            return next(new HttpError("Rellene todos los campos", 422));
+        }
+
+        const oldPost = await Post.findById(postID);
+        if (!oldPost) {
+            return next(new HttpError("Publicación no encontrada", 404));
+        }
+
+        // Verificar si el usuario es el creador
+        if (req.user.id !== oldPost.creator.toString()) {
+            return next(new HttpError("No autorizado para editar esta publicación.", 403));
+        }
+
+        // Si no se sube un nuevo archivo, solo se actualizan los campos de texto
+        if (!req.files || !req.files.thumbnail) {
+            updatedPost = await Post.findByIdAndUpdate(postID, { title, description }, { new: true });
+
+            if (!updatedPost) {
+                return next(new HttpError("No se ha podido actualizar la publicación.", 400));
+            }
+
+            return res.json(updatedPost); // Asegúrate de retornar aquí
+        } else {
+            const { thumbnail } = req.files;
+
+            // Verificar el tamaño del archivo
+            if (thumbnail.size > 2000000) {
+                return next(new HttpError("Imagen demasiado grande. Debería pesar menos de 2mb"));
+            }
+
+            // Subir la nueva imagen a Cloudinary
+            const result = await cloudinary.uploader.upload(thumbnail.tempFilePath, {
+                folder: "uploads",
+                public_id: uuid(),
+                resource_type: "image",
+            });
+
+            // Eliminar el archivo temporal
+            await fs.unlink(thumbnail.tempFilePath);
+
+            // Actualizar la publicación con el nuevo thumbnail
+            updatedPost = await Post.findByIdAndUpdate(
+                postID,
+                { title, description, thumbnail: result.secure_url },
+                { new: true }
+            );
+
+            if (!updatedPost) {
+                return next(new HttpError("No se ha podido actualizar la publicación.", 400));
+            }
+
+            return res.json(updatedPost); // Asegúrate de retornar aquí
+        }
+    } catch (error) {
+        return next(new HttpError(error.message, 500));
+    }
+};
 
 
 
@@ -182,7 +375,7 @@ const editPost = async (req, res, next) => {
 //============================== DELETE POST
 // DELETE : api/posts/:id
 // PROTECTED
-const removePost = async (req, res, next) => {
+/*const removePost = async (req, res, next) => {
     const postID = req.params.id;
     if(!postID) {
         return next(new HttpError("Publicación no disponible"))
@@ -206,6 +399,44 @@ const removePost = async (req, res, next) => {
     } else {
         return next(new HttpError("No se puede eliminar la publicación.", 403))
     }
-}
+}*/
+const removePost = async (req, res, next) => {
+    const postID = req.params.id;
+
+    if (!postID) {
+        return next(new HttpError("Publicación no disponible", 404));
+    }
+
+    try {
+        const post = await Post.findById(postID);
+        if (!post) {
+            return next(new HttpError("Publicación no encontrada", 404));
+        }
+
+        if (req.user.id === post.creator.toString()) {
+            // Eliminar thumbnail de Cloudinary
+            if (post.thumbnail) {
+                const publicId = post.thumbnail.split('/').pop().split('.')[0];
+                await cloudinary.uploader.destroy(publicId, { resource_type: 'image' });
+            }
+
+            // Eliminar la publicación
+            await Post.findByIdAndDelete(postID);
+
+            // Encontrar al usuario y reducir el conteo de publicaciones por 1
+            const currentUser = await User.findById(req.user.id);
+            const userPostCount = currentUser?.posts - 1;
+            await User.findByIdAndUpdate(req.user.id, { posts: userPostCount });
+
+            res.json({ message: "Publicación eliminada" });
+        } else {
+            return next(new HttpError("No se puede eliminar la publicación.", 403));
+        }
+    } catch (error) {
+        console.error("Error al eliminar la publicación:", error);
+        return next(new HttpError("Error al eliminar la publicación.", 500));
+    }
+};
+
 
 module.exports = {getPosts, getPost, getCatPosts, getUserPosts, createPost, editPost, removePost}

@@ -11,6 +11,8 @@
 
 # production
 /build
+/config/eternal-channel-433100-q3-1556155b1766.json
+
 
 # misc
 .DS_Store

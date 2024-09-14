@@ -60,8 +60,8 @@ const PostDetail = () => {
                     </div>
                     <h1>{post?.title}</h1>
                     <div className="post-detail__thumbnail">
-                        <img src={`${process.env.REACT_APP_ASSET_URL}/uploads/${post?.thumbnail}`} alt={post?.title} />
-                    </div>
+                        {/* Usar directamente la URL completa del thumbnail desde Cloudinary */}
+                        <img src={post?.thumbnail} alt={post?.title} /></div>
                     <p dangerouslySetInnerHTML={{ __html: post?.description }} />
                 </div>
             )}

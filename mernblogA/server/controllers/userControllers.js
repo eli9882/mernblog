@@ -1,3 +1,4 @@
+require('dotenv').config(); 
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const { v4: uuid } = require("uuid")
@@ -6,6 +7,16 @@ const path = require('path')
 
 const User = require('../models/userModel');
 const HttpError = require('../models/errorModel');
+const cloudinary = require('cloudinary').v2;
+
+
+// Configuración de Cloudinary
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
+
 
 
 const registerUser = async (req, res, next) => {
@@ -113,76 +124,112 @@ const logoutUser = (req, res, next) => {
 
 
 // Change user profile picture
+
+/*const changeAvatar = async (req, res, next) => {
+  let fileName;
+
+  try {
+    if (!req.files || !req.files.avatar) {
+      return next(new HttpError("No se ha cargado ningún archivo.", 422));
+    }
+
+    // Find user from database
+    const user = await User.findById(req.user.id);
+    if (!user) {
+      return next(new HttpError("Usuario no encontrado.", 404));
+    }
+
+    // Delete old avatar if exists
+    if (user.avatar) {
+      const oldAvatarPath = path.join(__dirname, '..', 'uploads', user.avatar);
+      fs.unlink(oldAvatarPath, (err) => {
+        if (err) {
+          console.error('Error al borrar avatar antiguo:', err);
+        }
+      });
+    }
+
+    const { avatar } = req.files;
+    // Check file size
+    if (avatar.size > 500000) {
+      return next(new HttpError("Imagen de perfil demasiado grande. El tamaño del archivo debe ser inferior a 500kb", 422));
+    }
+
+    // Generate new filename
+    fileName = avatar.name;
+    const splittedFilename = fileName.split('.');
+    const newFilename = `${splittedFilename[0]}-${uuid()}.${splittedFilename[splittedFilename.length - 1]}`;
+    
+    const uploadPath = path.join(__dirname, '..', 'uploads', newFilename);
+
+    // Move new avatar
+    avatar.mv(uploadPath, async (err) => {
+      if (err) {
+        return next(new HttpError("Error al mover el nuevo archivo de avatar.", 500));
+      }
+
+      // Update user avatar in database
+      const updatedUser = await User.findByIdAndUpdate(req.user.id, { avatar: newFilename }, { new: true });
+      if (!updatedUser) {
+        return next(new HttpError("Avatar no se podía cambiar..", 500));
+      }
+
+      res.status(200).json(updatedUser);
+    });
+
+  } catch (error) {
+    return next(new HttpError("Algo ha ido mal, por favor inténtelo de nuevo.", 500));
+  }
+}*/
+
+
+
 const changeAvatar = async (req, res, next) => {
-    let fileName;
-  
     try {
       if (!req.files || !req.files.avatar) {
         return next(new HttpError("No se ha cargado ningún archivo.", 422));
       }
   
-      // Find user from database
+      // Encontrar el usuario desde la base de datos
       const user = await User.findById(req.user.id);
       if (!user) {
         return next(new HttpError("Usuario no encontrado.", 404));
       }
   
-      // Delete old avatar if exists
-      if (user.avatar) {
-        const oldAvatarPath = path.join(__dirname, '..', 'uploads', user.avatar);
-        fs.unlink(oldAvatarPath, (err) => {
-          if (err) {
-            console.error('Error deleting old avatar:', err);
-          } else {
-            console.log(`Old avatar deleted: ${oldAvatarPath}`);
-          }
-        });
+      // Eliminar el avatar antiguo de Cloudinary si existe
+      if (user.avatar && user.avatarPublicId) {
+        await cloudinary.uploader.destroy(user.avatarPublicId);
       }
   
       const { avatar } = req.files;
-      // Check file size
+  
+      // Verificar el tamaño del archivo
       if (avatar.size > 500000) {
-        return next(new HttpError("Profile picture too big. File size should be under 500kb", 422));
+        return next(new HttpError("Imagen de perfil demasiado grande. El tamaño del archivo debe ser inferior a 500kb", 422));
       }
   
-      // Generate new filename
-      fileName = avatar.name;
-      const splittedFilename = fileName.split('.');
-      const newFilename = `${splittedFilename[0]}-${uuid()}.${splittedFilename[splittedFilename.length - 1]}`;
-      
-      const uploadPath = path.join(__dirname, '..', 'uploads', newFilename);
-  
-      // Move new avatar
-      avatar.mv(uploadPath, async (err) => {
-        if (err) {
-          return next(new HttpError("Error moving the new avatar file", 500));
-        }
-  
-        // Check if the file was saved successfully
-        fs.access(uploadPath, fs.constants.F_OK, (err) => {
-          if (err) {
-            console.error('File not found after moving:', uploadPath);
-            return next(new HttpError("Error confirming the new avatar file", 500));
-          } else {
-            console.log(`New avatar successfully saved: ${uploadPath}`);
-          }
-        });
-  
-        // Update user avatar in database
-        const updatedUser = await User.findByIdAndUpdate(req.user.id, { avatar: newFilename }, { new: true });
-        if (!updatedUser) {
-          return next(new HttpError("Avatar couldn't be changed.", 500));
-        }
-  
-        res.status(200).json(updatedUser);
+      // Subir la nueva imagen a Cloudinary
+      const uploadResult = await cloudinary.uploader.upload(avatar.tempFilePath, {
+        folder: "user_avatars",
+        public_id: `avatar-${uuid()}`,
       });
   
-    } catch (error) {
-      return next(new HttpError("Something went wrong, please try again.", 500));
-    }
-  }
+      // Actualizar el avatar del usuario en la base de datos
+      const updatedUser = await User.findByIdAndUpdate(
+        req.user.id,
+        {
+          avatar: uploadResult.secure_url, // URL del nuevo avatar
+          avatarPublicId: uploadResult.public_id, // Guardar el ID público para eliminarlo más tarde si se reemplaza
+        },
+        { new: true }
+      );
   
-
+      res.status(200).json(updatedUser);
+    } catch (error) {
+      return next(new HttpError("Algo ha ido mal, por favor inténtelo de nuevo.", 500));
+    }
+  };
+  
 
 
 

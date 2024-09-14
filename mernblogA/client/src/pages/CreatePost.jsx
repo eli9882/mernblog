@@ -48,11 +48,12 @@ const CreatePost = () => {
         const postData = new FormData();
         postData.set('title', title);
         postData.set('description', description);
-        postData.set('thumbnail', thumbnail);
+        postData.append('thumbnail', thumbnail);
 
         try {
             const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/posts`, postData, {
-                withCredentials: true, headers: {Authorization: `Bearer ${token}`}
+                withCredentials: true, headers: {Authorization: `Bearer ${token}`,
+                'Content-Type': 'multipart/form-data'}
             })
             if(response.status ===  201) {
               

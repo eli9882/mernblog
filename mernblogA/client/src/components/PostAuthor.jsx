@@ -7,7 +7,7 @@ import TimeAgo from 'javascript-time-ago';
 import en from 'javascript-time-ago/locale/en.json';
 import ru from 'javascript-time-ago/locale/ru.json';
 
-TimeAgo.addDefaultLocale(en);
+TimeAgo.addLocale(en);
 TimeAgo.addLocale(ru);
 
 const PostAuthor = ({ authorID, createdAt }) => {
@@ -29,7 +29,9 @@ const PostAuthor = ({ authorID, createdAt }) => {
   return (
     <div className="post__author">
       <div className="post__author-avatar">
-        <img src={`${process.env.REACT_APP_ASSET_URL}/uploads/${author?.avatar}`} alt="" />
+      {/*  <img src={`${process.env.REACT_APP_ASSET_URL}/uploads/${author?.avatar}`} alt="" />*/}
+      <img src={author?.avatar} alt={author?.name || 'Author'} />
+
       </div>
       <div className="post__author-details">
         <h5>By: {author?.name}</h5>

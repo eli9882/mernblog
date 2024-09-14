@@ -75,7 +75,8 @@ const UserProfile = () => {
             const response = await axios.patch(`${process.env.REACT_APP_BASE_URL}/users/edit-user`, userData, {
                 withCredentials: true,
                 headers: {
-                    Authorization: `Bearer ${token}`
+                    Authorization: `Bearer ${token}`,
+                'Content-Type': 'multipart/form-data'
                 }
             })
 
@@ -99,7 +100,7 @@ const UserProfile = () => {
                 <div className="profile__details">
                     <div className="avatar__wrapper">
                         <div className="profile__avatar">
-                            <img src={`${process.env.REACT_APP_ASSET_URL}/uploads/${avatar}`} alt="" />
+                        <img src={avatar} alt="Avatar" />
                         </div>
                         {/* Form to update avatar */}
                         <form className='avatar__form'>

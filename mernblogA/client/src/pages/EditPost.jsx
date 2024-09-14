@@ -62,12 +62,15 @@ const EditPost = () => {
         const postData = new FormData();
         postData.set('title', title);
         postData.set('description', description);
-        postData.set('thumbnail', thumbnail);
-
+        //postData.set('thumbnail', thumbnail);
+        if (thumbnail) {
+            postData.set('thumbnail', thumbnail); // Solo agregar el thumbnail si existe
+        }
         try {
             const response = await axios.patch(`${process.env.REACT_APP_BASE_URL}/posts/${params.id}`, postData, {
                 withCredentials: true,
-                headers: { Authorization: `Bearer ${token}` }
+                headers: { Authorization: `Bearer ${token}`,
+                'Content-Type': 'multipart/form-data' }
             });
             if (response.status === 200) {
                 return navigate('/');
@@ -76,7 +79,7 @@ const EditPost = () => {
             if (err.response.data.message === "TypeError: Cannot read properties of null (reading 'thumbnail')") {
                 setError("Please choose a thumbnail");
             } else {
-                setError(err.response.data.message);
+                setError("Ocurrió un error al actualizar la publicación.");
             }
         }
     };
