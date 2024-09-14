@@ -62,10 +62,10 @@ const EditPost = () => {
         const postData = new FormData();
         postData.set('title', title);
         postData.set('description', description);
-        //postData.set('thumbnail', thumbnail);
-        if (thumbnail) {
+        postData.set('thumbnail', thumbnail);
+        /*if (thumbnail) {
             postData.set('thumbnail', thumbnail); // Solo agregar el thumbnail si existe
-        }
+        }*/
         try {
             const response = await axios.patch(`${process.env.REACT_APP_BASE_URL}/posts/${params.id}`, postData, {
                 withCredentials: true,

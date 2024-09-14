@@ -244,8 +244,8 @@ const getUserPosts = async (req, res, next) => {
 
 //============================== EDIT POST
 // PATCH : api/posts/:id
-// PROTECTED     edit 2
-/*const editPost = async (req, res, next) => {
+// PROTECTED     
+const editPost = async (req, res, next) => {
     let updatedPost;
     try {
         const postID = req.params.id;
@@ -302,72 +302,9 @@ const getUserPosts = async (req, res, next) => {
     } catch (error) {
         return next(new HttpError(error.message, 500));
     }
-};*/
-
-const editPost = async (req, res, next) => {
-    let updatedPost;
-    try {
-        const postID = req.params.id;
-        const { title, description } = req.body;
-
-        if (!title || description.length < 12) {
-            return next(new HttpError("Rellene todos los campos", 422));
-        }
-
-        const oldPost = await Post.findById(postID);
-        if (!oldPost) {
-            return next(new HttpError("Publicación no encontrada", 404));
-        }
-
-        // Verificar si el usuario es el creador
-        if (req.user.id !== oldPost.creator.toString()) {
-            return next(new HttpError("No autorizado para editar esta publicación.", 403));
-        }
-
-        // Si no se sube un nuevo archivo, solo se actualizan los campos de texto
-        if (!req.files || !req.files.thumbnail) {
-            updatedPost = await Post.findByIdAndUpdate(postID, { title, description }, { new: true });
-
-            if (!updatedPost) {
-                return next(new HttpError("No se ha podido actualizar la publicación.", 400));
-            }
-
-            return res.json(updatedPost); // Asegúrate de retornar aquí
-        } else {
-            const { thumbnail } = req.files;
-
-            // Verificar el tamaño del archivo
-            if (thumbnail.size > 2000000) {
-                return next(new HttpError("Imagen demasiado grande. Debería pesar menos de 2mb"));
-            }
-
-            // Subir la nueva imagen a Cloudinary
-            const result = await cloudinary.uploader.upload(thumbnail.tempFilePath, {
-                folder: "uploads",
-                public_id: uuid(),
-                resource_type: "image",
-            });
-
-            // Eliminar el archivo temporal
-            await fs.unlink(thumbnail.tempFilePath);
-
-            // Actualizar la publicación con el nuevo thumbnail
-            updatedPost = await Post.findByIdAndUpdate(
-                postID,
-                { title, description, thumbnail: result.secure_url },
-                { new: true }
-            );
-
-            if (!updatedPost) {
-                return next(new HttpError("No se ha podido actualizar la publicación.", 400));
-            }
-
-            return res.json(updatedPost); // Asegúrate de retornar aquí
-        }
-    } catch (error) {
-        return next(new HttpError(error.message, 500));
-    }
 };
+
+
 
 
 
