@@ -12,7 +12,13 @@ const {notFound, errorHandler} = require('./middleware/errorMiddleware')
 const app = express();
 app.use(express.json({extended: true}))
 app.use(express.urlencoded({extended: true}))
-app.use(cors({credentials: true, origin: ['https://centrohatillosansebastiancr.netlify.app','http://localhost:3000']}))
+//app.use(cors({credentials: true, origin: ['https://centrohatillosansebastiancr.netlify.app','http://localhost:3000']}))
+app.use(cors({
+  origin: ['https://centrohatillosansebastiancr.netlify.app', 'http://localhost:3000'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true // Úsalo solo si manejas cookies
+}));
 
 app.use(upload({
   useTempFiles: true,  // Habilitar archivos temporales
