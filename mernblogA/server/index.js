@@ -1,4 +1,4 @@
-/*const express = require('express')
+const express = require('express')
 require('dotenv').config()
 const {connect} = require("mongoose")
 const cors = require('cors')
@@ -30,7 +30,7 @@ app.use(errorHandler)
 
 connect(process.env.MONGO_URI)
 .then(app.listen(process.env.PORT || 5000, () => console.log(`Server running on port ${process.env.PORT}`)))
-.catch(error => console.log(error))*/
+.catch(error => console.log(error))
 
 
 /*const express = require('express');
@@ -83,7 +83,7 @@ connect(process.env.MONGO_URI)
   .then(() => app.listen(process.env.PORT || 5000, () => console.log(`Server running on port ${process.env.PORT}`)))
   .catch(error => console.log(error));
 */
-const express = require('express');
+/*const express = require('express');
 require('dotenv').config();
 const { connect } = require("mongoose");
 const cors = require('cors');
@@ -116,4 +116,4 @@ app.use(errorHandler);
 
 connect(process.env.MONGO_URI)
   .then(app.listen(process.env.PORT || 5000, () => console.log(`Server running on port ${process.env.PORT}`)))
-  .catch(error => console.log(error));
+  .catch(error => console.log(error));*/
