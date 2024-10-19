@@ -55,8 +55,8 @@ const Dashboard = () => {
                         <article key={post._id} className="dashboard__post">
                             <div className='dashboard__post-info'>
                                 <div className="dashboard__post-thumbnail">
-                                    <img src={`${process.env.REACT_APP_ASSET_URL}/uploads/${post.thumbnail}`} alt={post.title} />
-                                </div>
+                                <img src={post.thumbnail} alt={post.title} />
+   </div>
                                 <h3>{post.title}</h3>
                             </div>
                             <div className="dashboard__post-actions">
