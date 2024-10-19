@@ -134,7 +134,7 @@ connect(process.env.MONGO_URI)
   const app = express();
   app.use(express.json({extended: true}))
   app.use(express.urlencoded({extended: true}))
-  app.use(cors({credentials: true, origin: ['https://pruebamern7.netlify.app','http://localhost:3000']}))
+  app.use(cors({credentials: true, origin: ['https://centrohatillosansebastiancr.netlify.app','http://localhost:3000']}))
   app.use(upload({
     useTempFiles: true,  // Habilitar archivos temporales
     tempFileDir: '/tmp/',  // Ruta de archivos temporales
